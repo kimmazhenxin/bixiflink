@@ -15,7 +15,7 @@ import org.apache.flink.api.scala._
   * @Version 1.0
   */
 //RichParallelSourceFunction不但能并行化
-//还比ParallelSourceFunction增加了open和close方法、getRuntimeContext
+//还比ParallelSourceFunction增加了open和close方法、getRuntimeContext,很用用处这些方法
 class RichParallelSourceFunctionWordCount extends RichParallelSourceFunction[String]{
   var num = 0
   var isCancel = true
