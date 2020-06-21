@@ -8,7 +8,7 @@ import org.apache.flink.util.Collector
 
 /**
   * 本地开发,读取socket统计wordcount
- *
+  * 使用命令 nc -l port 来发送数据即可
 	* @Author zhenxin.ma
   * @Date 	2020/3/2 15:13
   * @Version 1.0
@@ -21,7 +21,7 @@ object SocketWordCount {
 		val hostname: String = args(0)
 		val port: Int = args(1).toInt
 
-		//生成配置对象
+		//生成配置对象dd
 		val config: Configuration = new Configuration()
 		//开启flink-webui
 		config.setBoolean(ConfigConstants.LOCAL_START_WEBSERVER,true)
@@ -39,7 +39,7 @@ object SocketWordCount {
 		//env.getConfig.setGlobalJobParameters(ParameterTool.fromArgs(args))
 		//定义socket源
 		val text: DataStream[String] = env.socketTextStream(hostname,port)
-
+		println(hostname,port)
 
 		//scala开发需要加一行隐式转换，否则在调用operator的时候会报错
 		import org.apache.flink.api.scala._
@@ -54,16 +54,16 @@ object SocketWordCount {
 
 		//使用FlatMapFunction自定义函数来完成flatMap和map的组合功能
 		//和上面是一样的
-		val wordCountTo: DataStream[(String, Int)] = text.flatMap(new FlatMapFunction[String, (String, Int)] {
-			//value:输入	out:输出
-			override def flatMap(value: String, out: Collector[(String, Int)]): Unit = {
-				val strs: Array[String] = value.split(" ")
-				for (s <- strs) {
-					//把数据输出出去
-					out.collect((s, 1))
-				}
-			}
-		}).keyBy(0).sum(1)
+//		val wordCountTo: DataStream[(String, Int)] = text.flatMap(new FlatMapFunction[String, (String, Int)] {
+//			//value:输入	out:输出
+//			override def flatMap(value: String, out: Collector[(String, Int)]): Unit = {
+//				val strs: Array[String] = value.split(" ")
+//				for (s <- strs) {
+//					//把数据输出出去
+//					out.collect((s, 1))
+//				}
+//			}
+//		}).keyBy(0).sum(1)
 
 		//定义sink打印出控制台
 		wordCount.print()

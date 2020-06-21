@@ -167,6 +167,12 @@
             <version>1.2.51</version>
             <scope>compile</scope>
         </dependency>
+        <!--lombok包-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.10</version>
+        </dependency>
     </dependencies>
 
     <!--assembly打jar包-->

@@ -82,6 +82,7 @@ object ParallelSourceFunctionWordCount {
     //打印任务的执行计划
     println(env.getExecutionPlan)
 
+
     //定义任务的名称并运行
     //注意：operator是惰性的，只有遇到execute才执行
     env.execute("ParallelSourceFunctionWordCount")
