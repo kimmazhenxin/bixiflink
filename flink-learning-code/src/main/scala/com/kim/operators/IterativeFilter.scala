@@ -34,8 +34,12 @@ object IterativeFilter {
     val input: DataStream[Long] = env.generateSequence(0, 10)
 
     //流中的元素每个减1，并过滤出大于0的，然后生成新的流
-    val value: DataStream[Long] = input.iterate(d => (d.map(_ - 1), d.filter(_ > 0)))
-    input.print()
+    //详解: 元组的第一个元素是返回一个流,这个流作为下一次要迭代的流继续iterate。第二个元素才是这个operator真正的返回值,也是一个DataStream,也就是这里value得到的流。
+    val value: DataStream[Long] = input.iterate(
+      d => (d.map(_ - 1), d.filter(_ > 0))
+    )
+    value.print()
+
 
     env.execute("IterativeFilter")
   }
