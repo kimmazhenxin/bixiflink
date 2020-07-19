@@ -19,6 +19,7 @@ import org.apache.flink.api.scala._
 class ParallelSourceFunctionWordCount extends ParallelSourceFunction[String] {
   var num = 0
   var isCancel = true
+
   //调用run方法向下游产生数据
   override def run(ctx: SourceFunction.SourceContext[String]): Unit = {
     while (isCancel) {
@@ -36,7 +37,9 @@ class ParallelSourceFunctionWordCount extends ParallelSourceFunction[String] {
   }
 }
 
+
 object ParallelSourceFunctionWordCount {
+
   def main(args: Array[String]): Unit = {
     //生成配置对象
     val config: Configuration = new Configuration()

@@ -1,6 +1,6 @@
 package com.kim.datasource
 
-import org.apache.flink.api.common.functions.FlatMapFunction
+import org.apache.flink.api.common.functions.{FlatMapFunction, RichFlatMapFunction}
 import org.apache.flink.configuration.{ConfigConstants, Configuration}
 import org.apache.flink.streaming.api.functions.source.{RichParallelSourceFunction, SourceFunction}
 import org.apache.flink.streaming.api.scala.{DataStream, StreamExecutionEnvironment}
@@ -15,7 +15,7 @@ import org.apache.flink.api.scala._
   * @Version 1.0
   */
 //RichParallelSourceFunction不但能并行化
-//还比ParallelSourceFunction增加了open和close方法、getRuntimeContext,很用用处这些方法
+//还比ParallelSourceFunction增加了open和close方法、getRuntimeContext,很有用处这些方法
 class RichParallelSourceFunctionWordCount extends RichParallelSourceFunction[String]{
   var num = 0
   var isCancel = true
@@ -29,6 +29,7 @@ class RichParallelSourceFunctionWordCount extends RichParallelSourceFunction[Str
     println("open")
     num = 1000
   }
+
 
   //在source关闭的时候(run运行完成或者用户主动点webUI上的canceling)执行一次
   //比如mysql连接用完了，给还回连接池
@@ -113,6 +114,16 @@ object RichParallelSourceFunctionWordCount {
       }
     }).keyBy(0).sum(1)
 
+    //也可以使用,里面的方法更丰富
+//    val s: DataStream[(String, Int)] = text.flatMap(new RichFlatMapFunction[String, (String, Int)] {
+//      override def flatMap(value: String, out: Collector[(String, Int)]): Unit = {
+//        out.collect(("", 1))
+//      }
+//      override def open(parameters: Configuration): Unit = super.open(parameters)
+//    })
+
+
+    
     //定义sink打印出控制台
     wordCount.print()
 

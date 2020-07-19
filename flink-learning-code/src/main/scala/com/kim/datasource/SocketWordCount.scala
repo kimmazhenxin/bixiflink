@@ -35,6 +35,7 @@ object SocketWordCount {
 
 		//获取local运行环境并且带上webUI
 		val env: StreamExecutionEnvironment = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(config)
+		//生产环境使用
 //		val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
 		//env.getConfig.setGlobalJobParameters(ParameterTool.fromArgs(args))
 		//定义socket源
