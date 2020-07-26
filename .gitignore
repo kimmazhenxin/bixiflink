@@ -154,7 +154,7 @@ dmypy.json
 .pyre/
 
 ### Maven template
-target/
+flink-learning-code/target/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup

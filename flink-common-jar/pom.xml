@@ -50,6 +50,12 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.7</version>
             <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -80,6 +86,16 @@
             <artifactId>flink-scala_2.11</artifactId>
             <version>${flink.version}</version>
             <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>scala-library</artifactId>
+                    <groupId>org.scala-lang</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- flink streaming的scala的api -->
@@ -88,6 +104,12 @@
             <artifactId>flink-streaming-scala_2.11</artifactId>
             <version>${flink.version}</version>
             <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- flink的java的api -->
@@ -96,6 +118,12 @@
             <artifactId>flink-java</artifactId>
             <version>${flink.version}</version>
             <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <!-- flink streaming的java的api -->
         <dependency>
@@ -103,6 +131,16 @@
             <artifactId>flink-streaming-java_2.11</artifactId>
             <version>${flink.version}</version>
             <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>scala-parser-combinators_2.11</artifactId>
+                    <groupId>org.scala-lang.modules</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- flink 的kafkaconnector -->
@@ -111,6 +149,16 @@
             <artifactId>${flink_kafka_connector_version}</artifactId>
             <version>1.9.1</version>
             <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>snappy-java</artifactId>
+                    <groupId>org.xerial.snappy</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- 使用rocksdb保存flink的state -->
@@ -127,6 +175,44 @@
             <artifactId>flink-hbase_2.11</artifactId>
             <version>${flink.version}</version>
             <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>guava</artifactId>
+                    <groupId>com.google.guava</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>protobuf-java</artifactId>
+                    <groupId>com.google.protobuf</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-cli</artifactId>
+                    <groupId>commons-cli</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-codec</artifactId>
+                    <groupId>commons-codec</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-compress</artifactId>
+                    <groupId>org.apache.commons</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>zookeeper</artifactId>
+                    <groupId>org.apache.zookeeper</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>snappy-java</artifactId>
+                    <groupId>org.xerial.snappy</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- flink运行时的webUI -->
@@ -135,6 +221,12 @@
             <artifactId>flink-runtime-web_2.11</artifactId>
             <version>${flink.version}</version>
             <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- 辅助类增加get set toString等方法，需要idea安装lombok插件 -->
@@ -146,7 +238,6 @@
         </dependency>
 
         <!--canal框架,解析binlog-->
-
         <dependency>
             <groupId>com.alibaba.otter</groupId>
             <artifactId>canal.client</artifactId>
@@ -156,6 +247,30 @@
                 <exclusion>
                     <groupId>io.netty</groupId>
                     <artifactId>netty-all</artifactId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>fastjson</artifactId>
+                    <groupId>com.alibaba</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-cli</artifactId>
+                    <groupId>commons-cli</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-lang3</artifactId>
+                    <groupId>org.apache.commons</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>zookeeper</artifactId>
+                    <groupId>org.apache.zookeeper</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
                 </exclusion>
             </exclusions>
         </dependency>
