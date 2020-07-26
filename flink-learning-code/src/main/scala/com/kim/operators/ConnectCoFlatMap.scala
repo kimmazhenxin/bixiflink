@@ -1,7 +1,7 @@
 package com.kim.operators
 
 /**
-  * CoMap、CoFlatMap应用
+  * CoMap、CoFlatMap算子的应用
   * @Author: kim
   * @Date: 2020/7/26 17:35
   * @Version: 1.0
