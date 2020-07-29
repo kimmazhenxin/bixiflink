@@ -13,8 +13,6 @@ import org.apache.flink.api.scala._
   * @Date: 2020/7/29 23:53
   * @Version: 1.0
   */
-
-
 class SinkFunctionWordCount extends SinkFunction[(String,Int)] {
 	override def invoke(value: (String,Int), context: SinkFunction.Context[_]): Unit = {
 		println(s"value:${value}," +
@@ -22,8 +20,6 @@ class SinkFunctionWordCount extends SinkFunction[(String,Int)] {
 				s"waterMark:${context.currentWatermark()}")
 	}
 }
-
-
 
 
 object SinkFunctionWordCount {
