@@ -8,7 +8,7 @@ import org.apache.flink.streaming.api.scala.{DataStream, StreamExecutionEnvironm
 import org.apache.flink.api.scala._
 
 /**
-  * 自定义function
+  * 自定义SinkFunction
   * @Author: kim
   * @Date: 2020/7/29 23:53
   * @Version: 1.0
