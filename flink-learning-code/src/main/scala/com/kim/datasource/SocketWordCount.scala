@@ -1,6 +1,6 @@
 package com.kim.datasource
 
-import org.apache.flink.api.common.functions.FlatMapFunction
+import org.apache.flink.api.common.functions.{FlatMapFunction, RichFlatMapFunction}
 import org.apache.flink.api.java.utils.ParameterTool
 import org.apache.flink.configuration.{ConfigConstants, Configuration}
 import org.apache.flink.streaming.api.scala.{DataStream, KeyedStream, StreamExecutionEnvironment}
@@ -65,6 +65,17 @@ object SocketWordCount {
 //				}
 //			}
 //		}).keyBy(0).sum(1)
+
+
+		//使用更加丰富的RichFlatMapFunction来实现功能.......
+		text.flatMap(new RichFlatMapFunction[String, (String, Int)] {
+			override def open(parameters: Configuration): Unit = super.open(parameters)
+			override def clone(): AnyRef = super.clone()
+			override def flatMap(value: String, out: Collector[(String, Int)]): Unit = {
+
+			}
+		})
+
 
 		//定义sink打印出控制台
 		wordCount.print()
