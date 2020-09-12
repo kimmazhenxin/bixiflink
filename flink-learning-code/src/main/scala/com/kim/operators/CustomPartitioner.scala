@@ -1,6 +1,5 @@
 package com.kim.operators
 
-
 import org.apache.flink.api.common.functions.Partitioner
 import org.apache.flink.configuration.{ConfigConstants, Configuration}
 import org.apache.flink.streaming.api.scala.{DataStream, KeyedStream, StreamExecutionEnvironment}

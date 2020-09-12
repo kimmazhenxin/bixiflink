@@ -11,26 +11,15 @@
 
     <artifactId>flink-learning-code</artifactId>
 
-    <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <!--运行主类-->
-        <mainClass>com.kim.datasource.SocketWordCount</mainClass>
-    </properties>
 
     <dependencies>
-        <!--这个代表该项目依赖module flink-common-jar这个模块,也就是用它公共的jar包-->
         <dependency>
-            <groupId>com.pica</groupId>
-            <artifactId>flink-common-jar</artifactId>
-            <version>1.0</version>
-            <!--打jar包时改为provided-->
-            <scope>compile</scope>
+            <groupId>org.apache.hudi</groupId>
+            <artifactId>hudi-spark-bundle_2.11</artifactId>
         </dependency>
     </dependencies>
 
 
-    <!--assembly打jar包-->
     <build>
         <resources>
             <resource>
@@ -47,7 +36,8 @@
                     </descriptors>
                     <archive>
                         <manifest>
-                            <mainClass>${mainClass}</mainClass>
+                            <!--项目运行的主类-->
+                            <mainClass></mainClass>
                             <!--<mainClass>${package.mainClass}</mainClass>-->
                         </manifest>
                     </archive>
@@ -62,7 +52,17 @@
                     </execution>
                 </executions>
             </plugin>
-
+            <!-- Java Compiler -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            <!-- scala Compiler -->
             <plugin>
                 <groupId>org.scala-tools</groupId>
                 <artifactId>maven-scala-plugin</artifactId>
@@ -76,7 +76,6 @@
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -90,15 +89,7 @@
                 </configuration>
             </plugin>
 
-            <plugin>
-                <!-- 定义项目编译版本 -->
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
+
 </project>

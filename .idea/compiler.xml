@@ -2,16 +2,18 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="flink-learning-code" />
-        <module name="flinkcommonjar" />
+        <module name="flinklearningcode" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="flinklearningcode" target="1.8" />
+      <module name="flink-learning-code" target="1.8" />
+      <module name="flinkcommonjar" target="1.8" />
+      <module name="flinklearningcod" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

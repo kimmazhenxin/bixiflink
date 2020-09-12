@@ -154,7 +154,7 @@ dmypy.json
 .pyre/
 
 ### Maven template
-flink-learning-code/target/
+flink-learning-code/target
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -165,11 +165,9 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 
-### JetBrains template
-# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
-# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff
+.idea
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 .idea/**/usage.statistics.xml
@@ -234,4 +232,5 @@ fabric.properties
 
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
+
 

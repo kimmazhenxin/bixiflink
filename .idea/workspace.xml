@@ -1,50 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d7eaa423-39d9-4e84-8793-df11d36ec99b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/scala_sdk_2_11_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/scala_compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/flink-common-jar.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/books/flink-learing-code.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flink-common-jar/flinkcommonjar.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flink-common-jar/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flink-common-jar/src/assembly/assembly.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flink-learning-code/dependency-reduced-pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flink-learning-code/flinklearningcode.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flink-learning-code/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flink-learning-code/src/assembly/assembly.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/canal/JDBCWrapper.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/canal/ParamsList.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/datasource/ParallelSourceFunctionWordCount.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/datasource/RichParallelSourceFunctionWordCount.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/datasource/SocketWordCount.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/datasource/SourceFunctionWordCount.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/IterativeFilter.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/SocketMap.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/utils/PropertiesUtil.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    <list default="true" id="d7eaa423-39d9-4e84-8793-df11d36ec99b" name="Default Changelist" comment="迭代流增加了解释">
+      <change afterPath="$PROJECT_DIR$/flink-learning-code/src/main/resources/log4ji.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/scala_sdk_2_11_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/books/flink-common-jar.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flink-common-jar/flinkcommonjar.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flink-common-jar/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flink-common-jar/src/assembly/assembly.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flink-learning-code/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flink-learning-code/dependency-reduced-pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flink-learning-code/flinklearningcode.iml" beforeDir="false" afterPath="$PROJECT_DIR$/flink-learning-code/flinklearningcode.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flink-learning-code/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/flink-learning-code/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flink-learning-code/src/assembly/assembly.xml" beforeDir="false" afterPath="$PROJECT_DIR$/flink-learning-code/src/assembly/assembly.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flink-learning-code/src/main/java/Test1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flink-learning-code/src/main/java/Test2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flink-learning-code/src/main/resources/log4j.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/CustomPartitioner.scala" beforeDir="false" afterPath="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/CustomPartitioner.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/KeyBy.scala" beforeDir="false" afterPath="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/KeyBy.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/sink/SinkFunctionWordCount.scala" beforeDir="false" afterPath="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/sink/SinkFunctionWordCount.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/tmp/TestLombok.java" beforeDir="false" afterPath="$PROJECT_DIR$/flink-learning-code/src/main/java/com/kim/lombok/TestLombok.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/flink-learning-code/target/" />
     <ignored path="$PROJECT_DIR$/flink-common-jar/target/" />
+    <ignored path="$PROJECT_DIR$/flink-learning-cod/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3896">
+              <caret line="270" column="4" selection-start-line="270" selection-start-column="4" selection-end-line="270" selection-end-column="4" />
+              <folding>
+                <element signature="e#4282#4652#0" />
+                <element signature="e#5208#6773#0" />
+              </folding>
+            </state>
+          </provider>
+          <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>compile</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>provided</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -53,16 +98,43 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/flink-common-jar/src/assembly/assembly.xml" />
-        <option value="$PROJECT_DIR$/flink-common-jar/pom.xml" />
         <option value="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/pica/canal/ParamsList.scala" />
-        <option value="$PROJECT_DIR$/flink-learning-code/pom.xml" />
-        <option value="$PROJECT_DIR$/flink-learning-code/src/assembly/assembly.xml" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/pica/operators/IterativeFilter.scala" />
-        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/tmp/Test.java" />
+        <option value="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/tmp/Teacher.java" />
+        <option value="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/tmp/TestLombok.java" />
+        <option value="$PROJECT_DIR$/flink-learning-code/src/main/java/Test1.java" />
+        <option value="$PROJECT_DIR$/flink-learning-code/src/main/java/Test2.java" />
         <option value="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/datasource/ParallelSourceFunctionWordCount.scala" />
+        <option value="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/datasource/RichParallelSourceFunctionWordCount.scala" />
+        <option value="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/IterativeFilter.scala" />
+        <option value="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/ConnectUnion.scala" />
+        <option value="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/ConnectCoFlatMap.scala" />
+        <option value="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/CustomPartitioner.scala" />
+        <option value="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/datasource/SocketWordCount.scala" />
+        <option value="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/ReduceFoldAggregation.scala" />
+        <option value="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/sink/SinkFunctionWordCount.scala" />
+        <option value="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/sink/RichSinkFunctionWordCount.scala" />
+        <option value="$PROJECT_DIR$/flink-learning-code/src/main/resources/log4j.properties" />
+        <option value="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/KeyBy.scala" />
+        <option value="$PROJECT_DIR$/flink-common-jar/pom.xml" />
+        <option value="$PROJECT_DIR$/flink-learning-cod/pom.xml" />
+        <option value="$PROJECT_DIR$/flink-learning-code/src/main/resources/log4ji.properties" />
+        <option value="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/sink/OutputFormatWordCount.scala" />
+        <option value="$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-parser-combinators_2.11/1.0.4/scala-parser-combinators_2.11-1.0.4.pom" />
+        <option value="$PROJECT_DIR$/flink-learning-code/src/assembly/assembly.xml" />
+        <option value="$PROJECT_DIR$/flink-learning-code/pom.xml" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -71,34 +143,33 @@
         <option name="userSettingsFile" value="E:\apache-maven-3.3.9\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
       <expand>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="flink-common-jar" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="bixiflink" type="9519ce18:MavenProjectsStructure$ProjectNode" />
         </path>
         <path>
           <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="flink-learning-code" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="bixiflink" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
         </path>
       </expand>
       <select />
     </treeState>
   </component>
-  <component name="ProjectConfigurationFiles">
-    <option name="files">
-      <list>
-        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
-      </list>
-    </option>
-  </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-2123" />
-    <option name="y" value="-98" />
-    <option name="width" value="1940" />
-    <option name="height" value="1050" />
+    <option name="x" value="-2570" />
+    <option name="y" value="-369" />
+    <option name="width" value="2580" />
+    <option name="height" value="1410" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -107,7 +178,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -128,53 +198,36 @@
             </path>
             <path>
               <item name="bixiflink" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bixiflink" type="462c0819:PsiDirectoryNode" />
-              <item name="flink-learning-code" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bixiflink" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bixiflink" type="462c0819:PsiDirectoryNode" />
-              <item name="flink-learning-code" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bixiflink" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bixiflink" type="462c0819:PsiDirectoryNode" />
-              <item name="flink-learning-code" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="scala" type="462c0819:PsiDirectoryNode" />
-              <item name="kim" type="462c0819:PsiDirectoryNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="add_unversioned_files" value="true&#10;D:/workspace/IDEAWorksapce/bixiflink/flink-learning-code/dependency-reduced-pom.xml" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/flink-learning-code/src/main/java/com/kim/lombok" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.29885057" />
+    <property name="project.structure.side.proportion" value="0.54022986" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\workspace\IDEAWorksapce\bixiflink\flink-learning-code\src\main\java\com\kim\lombok" />
+      <recent name="D:\workspace\IDEAWorksapce\bixiflink\flink-learning-code\src\main\scala" />
       <recent name="D:\workspace\IDEAWorksapce\bixiflink\flink-learning-code" />
       <recent name="D:\workspace\IDEAWorksapce\bixiflink" />
-      <recent name="D:\workspace\IDEAWorksapce\bixiflink\flink-learning-code\src\main\scala" />
       <recent name="D:\workspace\IDEAWorksapce\bixiflink\flink-learning-code\src\assembly" />
-      <recent name="D:\workspace\IDEAWorksapce\bixiflink\flink-common-jar\src" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -188,6 +241,123 @@
         </RuleState>
       </list>
     </option>
+  </component>
+  <component name="RunManager" selected="Application.TestLombok">
+    <configuration name="ConnectCoFlatMap" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.kim.operators.ConnectCoFlatMap" />
+      <module name="flink-learning-code" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.kim.operators.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomPartitioner" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.kim.operators.CustomPartitioner" />
+      <module name="flink-learning-code" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.kim.operators.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OutputFormatWordCount" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.kim.sink.OutputFormatWordCount" />
+      <module name="flink-learning-code" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.kim.sink.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RichSinkFunctionWordCount" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.kim.sink.RichSinkFunctionWordCount" />
+      <module name="flink-learning-code" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.kim.sink.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SinkFunctionWordCount" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.kim.sink.SinkFunctionWordCount" />
+      <module name="flink-learning-code" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.kim.sink.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SocketWordCount" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.kim.datasource.SocketWordCount" />
+      <module name="flink-learning-code" />
+      <option name="PROGRAM_PARAMETERS" value="192.168.1.104 8099" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test2" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="C:\Program Files\Java\jdk1.8.0_191\jre" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Test2" />
+      <module name="flink-learning-code" />
+      <option name="VM_PARAMETERS" value="-Xms2g -Xmx2g -XX:+PrintCommandLineFlags" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestLombok" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.kim.lombok.TestLombok" />
+      <module name="flink-learning-code" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.kim.lombok.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.OutputFormatWordCount" />
+      <item itemvalue="Application.SocketWordCount" />
+      <item itemvalue="Application.Test2" />
+      <item itemvalue="Application.ConnectCoFlatMap" />
+      <item itemvalue="Application.CustomPartitioner" />
+      <item itemvalue="Application.SinkFunctionWordCount" />
+      <item itemvalue="Application.RichSinkFunctionWordCount" />
+      <item itemvalue="Application.TestLombok" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.TestLombok" />
+        <item itemvalue="Application.RichSinkFunctionWordCount" />
+        <item itemvalue="Application.SinkFunctionWordCount" />
+        <item itemvalue="Application.CustomPartitioner" />
+        <item itemvalue="Application.ConnectCoFlatMap" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -207,18 +377,146 @@
       <workItem from="1591257753134" duration="1174000" />
       <workItem from="1591263094082" duration="4173000" />
       <workItem from="1591328965941" duration="1336000" />
-      <workItem from="1591363428493" duration="3226000" />
+      <workItem from="1591363428493" duration="7318000" />
+      <workItem from="1591939383500" duration="596000" />
+      <workItem from="1592658229665" duration="4416000" />
+      <workItem from="1592666030241" duration="133000" />
+      <workItem from="1592666200394" duration="337000" />
+      <workItem from="1592666569544" duration="1571000" />
+      <workItem from="1592705369259" duration="9809000" />
+      <workItem from="1593088468805" duration="1170000" />
+      <workItem from="1593094247831" duration="2928000" />
+      <workItem from="1593249362502" duration="598000" />
+      <workItem from="1595163638436" duration="8194000" />
+      <workItem from="1595725210920" duration="20132000" />
+      <workItem from="1596205794710" duration="1002000" />
+      <workItem from="1596873298041" duration="3102000" />
+      <workItem from="1596889372800" duration="3688000" />
+      <workItem from="1596894756198" duration="1812000" />
+      <workItem from="1596954585407" duration="2221000" />
+      <workItem from="1597538633698" duration="2107000" />
+      <workItem from="1598279944933" duration="598000" />
+      <workItem from="1598692936435" duration="2837000" />
+      <workItem from="1599296454463" duration="4452000" />
+      <workItem from="1599356778395" duration="1282000" />
+      <workItem from="1599362983526" duration="1989000" />
+      <workItem from="1599659844945" duration="1436000" />
+      <workItem from="1599914540590" duration="5101000" />
+      <workItem from="1599919654383" duration="1123000" />
+      <workItem from="1599920784852" duration="7826000" />
+      <workItem from="1599928626321" duration="168000" />
+      <workItem from="1599928800734" duration="503000" />
     </task>
+    <task id="LOCAL-00001" summary="flink study">
+      <created>1591428026915</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1591428026915</updated>
+    </task>
+    <task id="LOCAL-00002" summary="修改了部分代码">
+      <created>1591429676131</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1591429676131</updated>
+    </task>
+    <task id="LOCAL-00003" summary="增加了.gitignore">
+      <created>1592666857334</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1592666857334</updated>
+    </task>
+    <task id="LOCAL-00004" summary="增加了.gitignore">
+      <created>1592667234668</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1592667234668</updated>
+    </task>
+    <task id="LOCAL-00005" summary="修改了.gitignore">
+      <created>1592667895213</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1592667895213</updated>
+    </task>
+    <task id="LOCAL-00006" summary="增加了测试Lombok的测试代码">
+      <created>1592667942113</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1592667942113</updated>
+    </task>
+    <task id="LOCAL-00007" summary="update">
+      <created>1595167368575</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1595167368575</updated>
+    </task>
+    <task id="LOCAL-00008" summary="迭代流增加了解释">
+      <created>1595171544339</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1595171544339</updated>
+    </task>
+    <task id="LOCAL-00009" summary="update by 2020/07/26">
+      <created>1595761777796</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1595761777796</updated>
+    </task>
+    <task id="LOCAL-00010" summary="s">
+      <created>1595761955978</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1595761955978</updated>
+    </task>
+    <task id="LOCAL-00011" summary="自定义SinkFunction">
+      <created>1596039153932</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1596039153932</updated>
+    </task>
+    <task id="LOCAL-00012" summary="增加了RickFlatMapFunction的实例">
+      <created>1596890257076</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1596890257076</updated>
+    </task>
+    <task id="LOCAL-00013" summary="自定义sink">
+      <created>1596895885857</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1596895885857</updated>
+    </task>
+    <task id="LOCAL-00014" summary="log4j">
+      <created>1596895953460</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1596895953460</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19153000" />
+    <option name="totallyTimeSpent" value="114376000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2567" y="-366" width="2062" height="1126" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49849245" visible="true" weight="0.12225549" />
-      <window_info id="Structure" order="1" sideWeight="0.5015075" side_tool="true" weight="0.16017964" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4969072" visible="true" weight="0.17174238" />
+      <window_info id="Structure" order="1" sideWeight="0.50309277" side_tool="true" weight="0.1602596" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -226,189 +524,310 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32964823" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.7474227" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32997987" />
       <window_info anchor="bottom" id="Spring" order="9" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32964823" />
-      <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" weight="0.32964823" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.51340204" />
+      <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" weight="0.32886598" />
+      <window_info anchor="bottom" id="Messages" order="13" weight="0.3298969" />
+      <window_info anchor="bottom" id="Problems" order="14" />
+      <window_info anchor="bottom" id="Analysis" order="15" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24912632" />
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Theme Preview" order="4" />
-      <window_info anchor="right" id="Maven" order="5" weight="0.24597855" />
+      <window_info anchor="right" id="Maven" order="5" weight="0.2451323" />
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
-      <window_info anchor="right" id="Database" order="8" />
+      <window_info anchor="right" id="Database" order="8" weight="0.32950574" />
+      <window_info anchor="right" id="Key Promoter X" order="9" weight="0.21457087" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/../flink/flink-runtime-web/web-dashboard/node_modules/karma/config.tpl.js" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="flink study" />
+    <MESSAGE value="修改了部分代码" />
+    <MESSAGE value="增加了.gitignore" />
+    <MESSAGE value="修改了.gitignore" />
+    <MESSAGE value="增加了测试Lombok的测试代码" />
+    <MESSAGE value="update" />
+    <MESSAGE value="迭代流增加了解释" />
+    <MESSAGE value="update by 2020/07/26" />
+    <MESSAGE value="s" />
+    <MESSAGE value="自定义SinkFunction" />
+    <MESSAGE value="增加了RickFlatMapFunction的实例" />
+    <MESSAGE value="自定义sink" />
+    <MESSAGE value="log4j" />
+    <option name="LAST_COMMIT_MESSAGE" value="log4j" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/flink-common-jar/src/assembly/assembly.xml">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/scala-lang/scala-library/2.11.12/scala-library-2.11.12-sources.jar!/scala/collection/mutable/StringBuilder.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="194" selection-start-line="1" selection-start-column="194" selection-end-line="1" selection-end-column="194" />
+        <state relative-caret-position="199">
+          <caret line="31" column="21" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/assembly/assembly.xml">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/idea64.exe.vmoptions">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="12" lean-forward="true" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-streaming-scala_2.11/1.9.1/flink-streaming-scala_2.11-1.9.1.jar!/org/apache/flink/streaming/api/scala/DataStream.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="69" column="6" selection-start-line="69" selection-start-column="6" selection-end-line="69" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/IterativeFilter.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="36" column="45" selection-start-line="36" selection-start-column="45" selection-end-line="36" selection-end-column="45" />
-          <folding>
-            <element signature="e#67#102#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-streaming-scala_2.11/1.9.1/flink-streaming-scala_2.11-1.9.1-sources.jar!/org/apache/flink/streaming/api/scala/DataStream.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="565" column="29" selection-start-line="565" selection-start-column="17" selection-end-line="565" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/utils/PropertiesUtil.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-157">
-          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/SocketMap.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flink-learning-code/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-streaming-java_2.11/1.9.1/flink-streaming-java_2.11-1.9.1.jar!/org/apache/flink/streaming/api/functions/source/SourceFunction.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/datasource/SocketWordCount.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="e#29#89#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/io/Serializable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2755">
-          <caret line="168" column="24" selection-start-line="168" selection-start-column="24" selection-end-line="168" selection-end-column="24" />
+        <state relative-caret-position="247">
+          <caret line="13" column="70" lean-forward="true" selection-start-line="13" selection-start-column="70" selection-end-line="13" selection-end-column="70" />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-streaming-java_2.11/1.9.1/flink-streaming-java_2.11-1.9.1-sources.jar!/org/apache/flink/streaming/api/functions/source/SourceFunction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="32" column="15" lean-forward="true" selection-start-line="32" selection-start-column="15" selection-end-line="32" selection-end-column="15" />
+        <state relative-caret-position="314">
+          <caret line="99" column="17" selection-start-line="99" selection-start-column="17" selection-end-line="99" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/datasource/RichParallelSourceFunctionWordCount.scala">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-streaming-java_2.11/1.9.1/flink-streaming-java_2.11-1.9.1-sources.jar!/org/apache/flink/streaming/api/datastream/DataStreamUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        <state relative-caret-position="304">
+          <caret line="49" column="56" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-streaming-java_2.11/1.9.1/flink-streaming-java_2.11-1.9.1-sources.jar!/org/apache/flink/streaming/api/environment/StreamExecutionEnvironment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="678" column="34" selection-start-line="678" selection-start-column="34" selection-end-line="678" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-streaming-java_2.11/1.9.1/flink-streaming-java_2.11-1.9.1-sources.jar!/org/apache/flink/streaming/api/datastream/ConnectedStreams.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="59" column="25" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-core/1.9.1/flink-core-1.9.1-sources.jar!/org/apache/flink/util/Collector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="34" column="27" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-streaming-scala_2.11/1.9.1/flink-streaming-scala_2.11-1.9.1-sources.jar!/org/apache/flink/streaming/api/scala/StreamExecutionEnvironment.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="414" column="6" selection-start-line="414" selection-start-column="6" selection-end-line="414" selection-end-column="6" />
           <folding>
-            <element signature="e#29#89#0" expanded="true" />
+            <element signature="e#853#896#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-core/1.9.1/flink-core-1.9.1-sources.jar!/org/apache/flink/api/common/functions/Partitioner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/ConnectUnion.scala" />
+    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/datasource/SourceFunctionWordCount.scala" />
+    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/datasource/ParallelSourceFunctionWordCount.scala" />
+    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/datasource/SocketWordCount.scala" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-streaming-java_2.11/1.9.1/flink-streaming-java_2.11-1.9.1-sources.jar!/org/apache/flink/streaming/api/datastream/DataStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="991" column="22" selection-start-line="991" selection-start-column="15" selection-end-line="991" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-core/1.9.1/flink-core-1.9.1-sources.jar!/org/apache/flink/api/common/functions/AbstractRichFunction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-streaming-java_2.11/1.9.1/flink-streaming-java_2.11-1.9.1-sources.jar!/org/apache/flink/streaming/api/functions/sink/SinkFunction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="30" column="17" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-streaming-java_2.11/1.9.1/flink-streaming-java_2.11-1.9.1-sources.jar!/org/apache/flink/streaming/api/functions/sink/RichSinkFunction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="26" column="61" selection-start-line="26" selection-start-column="61" selection-end-line="26" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/resources/log4j.properties" />
+    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/sink/RichSinkFunctionWordCount.scala" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-streaming-scala_2.11/1.9.1/flink-streaming-scala_2.11-1.9.1-sources.jar!/org/apache/flink/streaming/api/scala/package.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="42" column="21" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-streaming-scala_2.11/1.9.1/flink-streaming-scala_2.11-1.9.1-sources.jar!/org/apache/flink/streaming/api/scala/JoinedStreams.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="21" column="35" lean-forward="true" selection-start-line="21" selection-start-column="35" selection-end-line="21" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-streaming-scala_2.11/1.9.1/flink-streaming-scala_2.11-1.9.1-sources.jar!/org/apache/flink/streaming/api/scala/ConnectedStreams.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="170" column="57" selection-start-line="170" selection-start-column="57" selection-end-line="170" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-streaming-java_2.11/1.9.1/flink-streaming-java_2.11-1.9.1-sources.jar!/org/apache/flink/streaming/api/functions/co/CoFlatMapFunction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="412">
+          <caret line="46" column="29" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/ReduceFoldAggregation.scala" />
+    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/SocketMap.scala" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-core/1.9.1/flink-core-1.9.1-sources.jar!/org/apache/flink/api/common/functions/FlatMapFunction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="43" column="24" selection-start-line="43" selection-start-column="24" selection-end-line="43" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/KeyBy.scala" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-core/1.9.1/flink-core-1.9.1-sources.jar!/org/apache/flink/api/common/functions/RichFlatMapFunction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="33" column="98" selection-start-line="33" selection-start-column="98" selection-end-line="33" selection-end-column="98" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/ConnectCoFlatMap.scala" />
+    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/CustomPartitioner.scala" />
+    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/datasource/RichParallelSourceFunctionWordCount.scala" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/flink/flink-streaming-scala_2.11/1.9.1/flink-streaming-scala_2.11-1.9.1-sources.jar!/org/apache/flink/streaming/api/scala/DataStream.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="1117" column="6" selection-start-line="1117" selection-start-column="6" selection-end-line="1117" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/confluent/kafka-schema-registry-client/4.1.2/kafka-schema-registry-client-4.1.2.jar!/io/confluent/kafka/schemaregistry/avro/AvroCompatibilityChecker.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/IterativeFilter.scala" />
+    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/java/Test2.java" />
+    <entry file="file://$PROJECT_DIR$/flink-common-jar/pom.xml" />
+    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/java/Test1.java" />
+    <entry file="file://$PROJECT_DIR$/books/flink-common-jar.txt" />
+    <entry file="file://$PROJECT_DIR$/books/flink-learing-code.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flink-learning-code/dependency-reduced-pom.xml" />
+    <entry file="file://$PROJECT_DIR$/flink-learning-cod/pom.xml" />
+    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/java/com/kim/lombok/TestLombok.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/resources/log4ji.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/sink/OutputFormatWordCount.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="532">
+          <caret line="28" column="5" selection-start-line="28" selection-start-column="5" selection-end-line="28" selection-end-column="5" />
+          <folding>
+            <element signature="e#22#72#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$MAVEN_REPOSITORY$/org/scala-lang/modules/scala-parser-combinators_2.11/1.0.4/scala-parser-combinators_2.11-1.0.4.pom">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="44" column="38" selection-start-line="44" selection-start-column="38" selection-end-line="44" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$MAVEN_REPOSITORY$/org/scala-lang/scala-compiler/2.11.12/scala-compiler-2.11.12.pom">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="931">
+          <caret line="49" column="18" selection-start-line="49" selection-start-column="18" selection-end-line="49" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/sink/SinkFunctionWordCount.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/assembly/assembly.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flink-learning-code/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-398">
+          <caret line="17" column="59" selection-start-line="17" selection-start-column="59" selection-end-line="17" selection-end-column="59" />
+        </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="634">
+          <caret line="235" selection-start-line="235" selection-end-line="235" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="20" column="46" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="46" />
+        <state relative-caret-position="3896">
+          <caret line="270" column="4" selection-start-line="270" selection-start-column="4" selection-end-line="270" selection-end-column="4" />
+          <folding>
+            <element signature="e#4282#4652#0" />
+            <element signature="e#5208#6773#0" />
+          </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="266">
-            <caret line="14" selection-start-line="14" selection-end-line="14" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flink-learning-code/dependency-reduced-pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6308">
-          <caret line="332" column="34" selection-start-line="332" selection-start-column="24" selection-end-line="332" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/canal/ParamsList.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/datasource/ParallelSourceFunctionWordCount.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="17" column="13" lean-forward="true" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/datasource/SourceFunctionWordCount.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="17" column="6" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/books/flink-learing-code.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/books/flink-common-jar.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flink-common-jar/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="50" lean-forward="true" selection-start-line="1" selection-start-column="50" selection-end-line="1" selection-end-column="50" />
-        </state>
-      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
     </entry>
   </component>
   <component name="masterDetails">
@@ -419,7 +838,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.29885057" />
+                <option value="0.54022986" />
               </list>
             </option>
           </splitter-proportions>
@@ -443,7 +862,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.4402299" />
               </list>
             </option>
           </splitter-proportions>
@@ -455,7 +874,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.4402299" />
               </list>
             </option>
           </splitter-proportions>
@@ -467,7 +886,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.29885057" />
+                <option value="0.54022986" />
                 <option value="0.6" />
               </list>
             </option>
@@ -488,11 +907,11 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>scala-sdk-2.11.12</last-edited>
+          <last-edited>Maven: org.scala-lang.modules:scala-xml_2.11:1.0.5</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.29885057" />
+                <option value="0.54022986" />
               </list>
             </option>
           </splitter-proportions>

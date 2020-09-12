@@ -1,4 +1,4 @@
-package com.kim.tmp;
+package com.kim.lombok;
 
 import lombok.Data;
 
