@@ -2,30 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7eaa423-39d9-4e84-8793-df11d36ec99b" name="Default Changelist" comment="迭代流增加了解释">
-      <change afterPath="$PROJECT_DIR$/flink-learning-code/src/main/resources/log4ji.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/scala_sdk_2_11_12.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/books/flink-common-jar.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flink-common-jar/flinkcommonjar.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flink-common-jar/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flink-common-jar/src/assembly/assembly.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flink-learning-code/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flink-learning-code/dependency-reduced-pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flink-learning-code/flinklearningcode.iml" beforeDir="false" afterPath="$PROJECT_DIR$/flink-learning-code/flinklearningcode.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flink-learning-code/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/flink-learning-code/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flink-learning-code/src/assembly/assembly.xml" beforeDir="false" afterPath="$PROJECT_DIR$/flink-learning-code/src/assembly/assembly.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flink-learning-code/src/main/java/Test1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flink-learning-code/src/main/java/Test2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flink-learning-code/src/main/resources/log4j.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/CustomPartitioner.scala" beforeDir="false" afterPath="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/CustomPartitioner.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/KeyBy.scala" beforeDir="false" afterPath="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/operators/KeyBy.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/sink/SinkFunctionWordCount.scala" beforeDir="false" afterPath="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/sink/SinkFunctionWordCount.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/flink-learning-code/src/main/scala/com/kim/tmp/TestLombok.java" beforeDir="false" afterPath="$PROJECT_DIR$/flink-learning-code/src/main/java/com/kim/lombok/TestLombok.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -60,11 +37,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="3896">
-              <caret line="270" column="4" selection-start-line="270" selection-start-column="4" selection-end-line="270" selection-end-column="4" />
+              <caret line="270" selection-start-line="270" selection-end-line="270" />
               <folding>
                 <element signature="e#4282#4652#0" />
                 <element signature="e#5208#6773#0" />
@@ -72,6 +49,15 @@
             </state>
           </provider>
           <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="194">
+              <caret line="169" column="5" lean-forward="true" selection-start-line="169" selection-start-column="5" selection-end-line="169" selection-end-column="5" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -86,9 +72,11 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>compile</find>
+      <find>provided</find>
     </findStrings>
     <replaceStrings>
       <replace>provided</replace>
+      <replace>compile</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -188,6 +176,11 @@
             <path>
               <item name="bixiflink" type="b2602c69:ProjectViewProjectNode" />
               <item name="bixiflink" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="bixiflink" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bixiflink" type="462c0819:PsiDirectoryNode" />
               <item name="flink-learning-code" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -210,16 +203,16 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="add_unversioned_files" value="true&#10;D:/workspace/IDEAWorksapce/bixiflink/flink-learning-code/dependency-reduced-pom.xml" />
+    <property name="add_unversioned_files" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/flink-learning-code/src/main/java/com/kim/lombok" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.54022986" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -405,7 +398,7 @@
       <workItem from="1599919654383" duration="1123000" />
       <workItem from="1599920784852" duration="7826000" />
       <workItem from="1599928626321" duration="168000" />
-      <workItem from="1599928800734" duration="503000" />
+      <workItem from="1599928800734" duration="1125000" />
     </task>
     <task id="LOCAL-00001" summary="flink study">
       <created>1591428026915</created>
@@ -509,11 +502,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114376000" />
+    <option name="totallyTimeSpent" value="114998000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-2567" y="-366" width="2062" height="1126" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4969072" visible="true" weight="0.17174238" />
       <window_info id="Structure" order="1" sideWeight="0.50309277" side_tool="true" weight="0.1602596" />
@@ -533,7 +525,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32997987" />
       <window_info anchor="bottom" id="Spring" order="9" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.51340204" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.5123711" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" weight="0.32886598" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.3298969" />
       <window_info anchor="bottom" id="Problems" order="14" />
@@ -810,17 +802,10 @@
       </provider>
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="634">
-          <caret line="235" selection-start-line="235" selection-end-line="235" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3896">
-          <caret line="270" column="4" selection-start-line="270" selection-start-column="4" selection-end-line="270" selection-end-column="4" />
+          <caret line="270" selection-start-line="270" selection-end-line="270" />
           <folding>
             <element signature="e#4282#4652#0" />
             <element signature="e#5208#6773#0" />
@@ -828,6 +813,13 @@
         </state>
       </provider>
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="169" column="5" lean-forward="true" selection-start-line="169" selection-start-column="5" selection-end-line="169" selection-end-column="5" />
+        </state>
+      </provider>
     </entry>
   </component>
   <component name="masterDetails">
