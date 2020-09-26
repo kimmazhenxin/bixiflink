@@ -14,6 +14,7 @@ import org.apache.flink.util.Collector
   * @Version 1.0
   */
 object SocketWordCount {
+
 	def main(args: Array[String]): Unit = {
 		if (args.length !=2) {
 			println("USAGE:\nSocketWordCount <hostname> <port>")
