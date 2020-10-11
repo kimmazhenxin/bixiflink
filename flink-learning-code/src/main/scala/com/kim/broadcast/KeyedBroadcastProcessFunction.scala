@@ -1,50 +1,26 @@
 package com.kim.broadcast
 
-import org.apache.flink.api.common.state.{BroadcastState, MapStateDescriptor, ReadOnlyBroadcastState}
+import org.apache.flink.api.common.state.MapStateDescriptor
 import org.apache.flink.api.common.typeinfo.{BasicTypeInfo, TypeHint, TypeInformation}
 import org.apache.flink.configuration.{ConfigConstants, Configuration}
 import org.apache.flink.streaming.api.datastream.BroadcastStream
-import org.apache.flink.streaming.api.functions.co.BroadcastProcessFunction
 import org.apache.flink.streaming.api.scala.{BroadcastConnectedStream, DataStream, StreamExecutionEnvironment}
-import org.apache.flink.util.Collector
 import org.apache.log4j.Logger
 //scala开发需要加一行隐式转换，否则在调用operator的时候会报错
 import org.apache.flink.api.scala._
 
-
 /**
-  * 广播流的使用
   *
   * @Author: kim
-  * @Date: 2020/9/26 16:36
+  * @Date: 2020/9/26 17:57
   * @Version: 1.0
   */
 
-//继承BroadcastProcessFunction
-class BixiBroadcastProcessFunction extends BroadcastProcessFunction[String, CountryConfig, (String, String)] {
-
-	//负责处理非广播流中的传入元素，他可以使用与广播状态进行匹配
-	//在所有task中都能收到广播流广播来的相同数据，并将数据保存到mapState中
-	override def processElement(value: String, ctx: BroadcastProcessFunction[String, CountryConfig, (String, String)]#ReadOnlyContext, out: Collector[(String, String)]): Unit = {
-		//先获取广播流
-		val roBroadcast: ReadOnlyBroadcastState[String, CountryConfig] = ctx.getBroadcastState(BroadcastProcessFunction.configBroadCastState)
-		val config: CountryConfig = roBroadcast.get(value)
-		if (null != config) {
-			out.collect(value, config.name)
-		}
-	}
-
-	//负责处理广播流中的传入元素（例如规则），一般把广播流的元素添加到状态（MapState）里去备用，processElement处理业务数据时就可以使用（规则）
-	//处理事件流的每条记录，并从mapState中得到对应的值
-	override def processBroadcastElement(value: CountryConfig, ctx: BroadcastProcessFunction[String, CountryConfig, (String, String)]#Context, out: Collector[(String, String)]): Unit = {
-		val roBroadcast: BroadcastState[String, CountryConfig] = ctx.getBroadcastState(BroadcastProcessFunction.configBroadCastState)
-		roBroadcast.put(value.code, value)
-	}
-}
 
 
-object BroadcastProcessFunction {
 
+
+object KeyedBroadcastProcessFunction {
 	val LOG = Logger.getLogger(this.getClass)
 
 	//broadcast的类型描述，也可以在broadCastProcessFunction中重复使用
@@ -68,7 +44,7 @@ object BroadcastProcessFunction {
 		//获取local运行环境并且带上webUI
 		val env: StreamExecutionEnvironment = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(config)
 		//生产环境使用
-		//val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
+		//		val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
 		//env.getConfig.setGlobalJobParameters(ParameterTool.fromArgs(args))
 
 		//第一步: 创建常规事件流DataStream / KeyedDataStream, 定义socket源
@@ -91,12 +67,3 @@ object BroadcastProcessFunction {
 	}
 
 }
-
-
-
-/**
-  * 样例类,国家编码配置
-  * @param code 国家编码
-  * @param name 国家名称
-  */
-case class CountryConfig(code: String, name: String)
