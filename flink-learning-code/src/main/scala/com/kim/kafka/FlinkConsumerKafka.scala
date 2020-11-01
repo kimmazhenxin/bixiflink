@@ -11,7 +11,7 @@ import org.apache.flink.streaming.api.functions.timestamps.BoundedOutOfOrderness
 import org.apache.flink.streaming.api.scala.DataStream
 import org.apache.flink.streaming.api.windowing.time.Time
 import org.apache.flink.streaming.connectors.kafka.{FlinkKafkaConsumer010, KafkaDeserializationSchema}
-import org.apache.flink.streaming.util.serialization.KeyedDeserializationSchema
+import org.apache.flink.streaming.util.serialization.{DeserializationSchema, KeyedDeserializationSchema}
 import org.apache.kafka.clients.consumer.ConsumerRecord
 //scala开发需要加一行隐式转换，否则在调用operator的时候会报错
 import org.apache.flink.api.scala._
@@ -98,6 +98,9 @@ object FlinkConsumerKafka {
 case class KafkaEvent(message: String, eventTime: Long)
 
 
+
+
+
 class KafkaEventDeserializationSchema extends KafkaDeserializationSchema[KafkaEvent] {
 
 	override def isEndOfStream(nextElement: KafkaEvent): Boolean = ???
@@ -106,6 +109,7 @@ class KafkaEventDeserializationSchema extends KafkaDeserializationSchema[KafkaEv
 
 	override def getProducedType: TypeInformation[KafkaEvent] = ???
 }
+
 
 
 class CustomWatermarkExtractor(maxOutOfOrderness: Time) extends BoundedOutOfOrdernessTimestampExtractor[KafkaEvent](maxOutOfOrderness) {
