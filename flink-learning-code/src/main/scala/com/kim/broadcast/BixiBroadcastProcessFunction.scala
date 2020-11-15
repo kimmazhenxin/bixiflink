@@ -43,7 +43,7 @@ class BixiBroadcastProcessFunction extends BroadcastProcessFunction[String, Coun
 }
 
 
-object BroadcastProcessFunction {
+object BixiBroadcastProcessFunction {
 
 	val LOG = Logger.getLogger(this.getClass)
 

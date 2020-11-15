@@ -1,26 +1,56 @@
 package com.kim.broadcast
 
-import org.apache.flink.api.common.state.MapStateDescriptor
+import org.apache.flink.api.common.state.{BroadcastState, MapStateDescriptor, ReadOnlyBroadcastState}
 import org.apache.flink.api.common.typeinfo.{BasicTypeInfo, TypeHint, TypeInformation}
 import org.apache.flink.configuration.{ConfigConstants, Configuration}
 import org.apache.flink.streaming.api.datastream.BroadcastStream
-import org.apache.flink.streaming.api.scala.{BroadcastConnectedStream, DataStream, StreamExecutionEnvironment}
+import org.apache.flink.streaming.api.functions.co.KeyedBroadcastProcessFunction
+import org.apache.flink.streaming.api.scala.{BroadcastConnectedStream, DataStream, KeyedStream, StreamExecutionEnvironment}
+import org.apache.flink.util.Collector
 import org.apache.log4j.Logger
 //scala开发需要加一行隐式转换，否则在调用operator的时候会报错
 import org.apache.flink.api.scala._
 
 /**
-  *
+  * KeyedBroadcastProcessFunction 使用
   * @Author: kim
   * @Date: 2020/9/26 17:57
   * @Version: 1.0
   */
 
+class BixiKeyedBroadcastProcessFunction(var configBroadCastState: MapStateDescriptor[String, CountryConfig]) extends KeyedBroadcastProcessFunction[String, (String, Int), CountryConfig, (String, String)] {
 
 
 
+	override def open(parameters: Configuration): Unit = {
+		super.open(parameters)
+	}
 
-object KeyedBroadcastProcessFunction {
+
+
+	override def processElement(value: (String, Int), ctx: KeyedBroadcastProcessFunction[String, (String, Int), CountryConfig, (String, String)]#ReadOnlyContext, out: Collector[(String, String)]): Unit = {
+		val broadState: ReadOnlyBroadcastState[String, CountryConfig] = ctx.getBroadcastState(configBroadCastState)
+		val countryConfig: CountryConfig = broadState.get(value._1)
+
+		if (null != countryConfig) {
+			out.collect(value._1, s"${countryConfig.name}, key: ${ctx.getCurrentKey}")
+		}
+
+	}
+
+	override def processBroadcastElement(value: CountryConfig, ctx: KeyedBroadcastProcessFunction[String, (String, Int), CountryConfig, (String, String)]#Context, out: Collector[(String, String)]): Unit = {
+		val broadState: BroadcastState[String, CountryConfig] = ctx.getBroadcastState(configBroadCastState)
+		//更新广播流
+		if (null != value) {
+			broadState.put(value.name, value)
+		}
+
+	}
+}
+
+
+
+object BixiKeyedBroadcastProcessFunction {
 	val LOG = Logger.getLogger(this.getClass)
 
 	//broadcast的类型描述，也可以在broadCastProcessFunction中重复使用
@@ -57,13 +87,17 @@ object KeyedBroadcastProcessFunction {
 			CountryConfig(strings(0), strings(1))
 		}).broadcast(configBroadCastState)
 
+
 		//第三步: 连接两个流,生成BroadcastConnectedStream并实现计算处理
-		val broadcastConnect: BroadcastConnectedStream[String, CountryConfig] = input1.connect(broadcast)
-		broadcastConnect.process(new BixiBroadcastProcessFunction).print()
+		val broadcastConnect: BroadcastConnectedStream[(String, Int), CountryConfig] = input1.map((_, 1)).keyBy(_._1).connect(broadcast)
+		broadcastConnect.process(new BixiKeyedBroadcastProcessFunction(configBroadCastState)).print()
 
 
 
-		env.execute("Broadcast State")
+		env.execute("Keyed Broadcast State")
 	}
 
 }
+
+
+
