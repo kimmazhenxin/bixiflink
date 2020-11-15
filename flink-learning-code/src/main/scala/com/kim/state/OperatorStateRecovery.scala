@@ -43,7 +43,7 @@ class OperatorStateRecoveryRichFunction extends RichFlatMapFunction[String, (Int
 				list.clear()
 
 			}else if (value.equals("e")) {
-				1
+				1 / 0
 			}else {
 				list +=value
 			}
