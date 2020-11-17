@@ -115,6 +115,7 @@ class KafkaEventDeserializationSchema extends KafkaDeserializationSchema[KafkaEv
 class CustomWatermarkExtractor(maxOutOfOrderness: Time) extends BoundedOutOfOrdernessTimestampExtractor[KafkaEvent](maxOutOfOrderness) {
 
 	override def extractTimestamp(element: KafkaEvent): Long = {
+		1L
 
 	}
 }

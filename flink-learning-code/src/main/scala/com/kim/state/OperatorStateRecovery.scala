@@ -8,7 +8,7 @@ package com.kim.state
   */
 import java.util.concurrent.TimeUnit
 
-import org.apache.flink.api.common.functions.{RichFlatMapFunction}
+import org.apache.flink.api.common.functions.RichFlatMapFunction
 import org.apache.flink.api.common.restartstrategy.RestartStrategies
 import org.apache.flink.api.common.state.{ListState, ListStateDescriptor}
 import org.apache.flink.api.common.time.Time
@@ -22,12 +22,17 @@ import org.apache.flink.runtime.state.filesystem.FsStateBackend
 import org.apache.flink.streaming.api.CheckpointingMode
 import org.apache.flink.streaming.api.checkpoint.CheckpointedFunction
 import org.apache.flink.streaming.api.environment.CheckpointConfig
+import org.slf4j.{Logger, LoggerFactory}
+
 import scala.collection.mutable.ListBuffer
 
 
 
 //实现CheckpointedFunction接口
 class OperatorStateRecoveryRichFunction extends RichFlatMapFunction[String, (Int, String)] with CheckpointedFunction {
+
+	lazy private val logger: Logger = LoggerFactory.getLogger(this.getClass)
+
 	//托管状态
 	@transient private var checkPointCountList: ListState[String] = _
 
@@ -41,37 +46,37 @@ class OperatorStateRecoveryRichFunction extends RichFlatMapFunction[String, (Int
 				val outString: String = list.foldLeft("")(_ + " " + _)
 				out.collect((list.size, outString))
 				list.clear()
-
-			}else if (value.equals("e")) {
-				1 / 0
-			}else {
-				list +=value
 			}
 
+		} else if (value.equals("e")) {
+				//此时出错
+				1 / 0
+		}else {
+				list +=value
 		}
-
-
 	}
 
-	//再checkpoint时存储，把正在处理的原始状态的数据保存到托管状态中
+	//定时调用,在checkpoint时存储，把正在处理的原始状态的数据保存到托管状态中
 	override def snapshotState(context: FunctionSnapshotContext): Unit = {
 		checkPointCountList.clear()
 		list.foreach(f => checkPointCountList.add(f))
-		println(s"snapshotState:${list}")
+		logger.info(s"snapshotState:${list}")
 	}
+
 
 	//从statebackend中恢复保存的托管状态，并将来数据放到程序处理的原始状态中
 	// 出错一次就调用一次这里，能调用几次是根据setRestartStrategy设置的
 	override def initializeState(context: FunctionInitializationContext): Unit = {
 		val lsd = new ListStateDescriptor[String]("kimListState", TypeInformation.of(new TypeHint[String] {}))
 		checkPointCountList = context.getOperatorStateStore.getListState(lsd)
+		//恢复状态
 		if (context.isRestored) {
 			import scala.collection.convert.wrapAll._
 			for (e <- checkPointCountList.get()) {
 				list += e
 			}
 		}
-		println(s"initializeState:${list}")
+		logger.info(s"initializeState:${list}")
 
 	}
 }
@@ -80,10 +85,14 @@ class OperatorStateRecoveryRichFunction extends RichFlatMapFunction[String, (Int
 
 
 object OperatorStateRecovery {
+
+	lazy private val logger: Logger = LoggerFactory.getLogger(OperatorStateRecovery.getClass)
+
 	def main(args: Array[String]): Unit = {
 		if (args.length !=2) {
-			println("USAGE:\nSocketWordCount <hostname> <port>")
+			logger.error("USAGE:\nSocketWordCount <hostname> <port>")
 		}
+
 		val hostname: String = args(0)
 		val port: Int = args(1).toInt
 
@@ -107,7 +116,7 @@ object OperatorStateRecovery {
 		env.setParallelism(1)
 
 		//隔多长时间执行一次ck
-		env.enableCheckpointing(1000L)
+		env.enableCheckpointing(10000L)
 		val checkpointConfig: CheckpointConfig = env.getCheckpointConfig
 		//保存EXACTLY_ONCE
 		checkpointConfig.setCheckpointingMode(CheckpointingMode.EXACTLY_ONCE)

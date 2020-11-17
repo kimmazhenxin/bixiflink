@@ -21,13 +21,13 @@ import org.apache.flink.api.scala._
   */
 
 //继承BroadcastProcessFunction
-class BixiBroadcastProcessFunction extends BroadcastProcessFunction[String, CountryConfig, (String, String)] {
+class BixiBroadcastProcessFunction(var configBroadCastState: MapStateDescriptor[String,CountryConfig]) extends BroadcastProcessFunction[String, CountryConfig, (String, String)] {
 
 	//负责处理非广播流中的传入元素，他可以使用与广播状态进行匹配
 	//在所有task中都能收到广播流广播来的相同数据，并将数据保存到mapState中
 	override def processElement(value: String, ctx: BroadcastProcessFunction[String, CountryConfig, (String, String)]#ReadOnlyContext, out: Collector[(String, String)]): Unit = {
 		//先获取广播流
-		val roBroadcast: ReadOnlyBroadcastState[String, CountryConfig] = ctx.getBroadcastState(BroadcastProcessFunction.configBroadCastState)
+		val roBroadcast: ReadOnlyBroadcastState[String, CountryConfig] = ctx.getBroadcastState(configBroadCastState)
 		val config: CountryConfig = roBroadcast.get(value)
 		if (null != config) {
 			out.collect(value, config.name)
@@ -37,7 +37,7 @@ class BixiBroadcastProcessFunction extends BroadcastProcessFunction[String, Coun
 	//负责处理广播流中的传入元素（例如规则），一般把广播流的元素添加到状态（MapState）里去备用，processElement处理业务数据时就可以使用（规则）
 	//处理事件流的每条记录，并从mapState中得到对应的值
 	override def processBroadcastElement(value: CountryConfig, ctx: BroadcastProcessFunction[String, CountryConfig, (String, String)]#Context, out: Collector[(String, String)]): Unit = {
-		val roBroadcast: BroadcastState[String, CountryConfig] = ctx.getBroadcastState(BroadcastProcessFunction.configBroadCastState)
+		val roBroadcast: BroadcastState[String, CountryConfig] = ctx.getBroadcastState(configBroadCastState)
 		roBroadcast.put(value.code, value)
 	}
 }
@@ -83,7 +83,7 @@ object BixiBroadcastProcessFunction {
 
 		//第三步: 连接两个流,生成BroadcastConnectedStream并实现计算处理
 		val broadcastConnect: BroadcastConnectedStream[String, CountryConfig] = input1.connect(broadcast)
-		broadcastConnect.process(new BixiBroadcastProcessFunction).print()
+		broadcastConnect.process(new BixiBroadcastProcessFunction(configBroadCastState)).print()
 
 
 
