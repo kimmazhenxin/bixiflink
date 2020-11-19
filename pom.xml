@@ -22,9 +22,21 @@
         <scala.binary.version>2.11</scala.binary.version>
         <flink.version>1.11.1</flink.version>
         <java.version>1.8</java.version>
+        <parquet.version>1.10.1</parquet.version>
+        <hadoop.version>2.7.3</hadoop.version>
+        <hive.groupid>org.apache.hive</hive.groupid>
+        <hive.version>2.3.1</hive.version>
+        <hive.exec.classifier>core</hive.exec.classifier>
         <canal.client.version>1.1.4</canal.client.version>
         <flink_kafka_connector_version>flink-connector-kafka-0.10_2.11</flink_kafka_connector_version>
         <hudi.version>0.6.0</hudi.version>
+        <mysql.version>5.1.6</mysql.version>
+        <fastjson.version>1.2.51</fastjson.version>
+        <log4j.version>1.2.17</log4j.version>
+        <slf4j.version>1.7.7</slf4j.version>
+        <flink.mysql.cdc.version>1.1.0</flink.mysql.cdc.version>
+        <lombok.version>1.18.0</lombok.version>
+        <project.build.scope>compile</project.build.scope>
     </properties>
 
 
@@ -33,13 +45,13 @@
             <groupId>org.scala-lang</groupId>
             <artifactId>scala-library</artifactId>
             <version>${scala.version}</version>
-            <scope>compile</scope>
+            <scope>${project.build.scope}</scope>
         </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.7</version>
+            <version>${slf4j.version}</version>
             <scope>runtime</scope>
             <exclusions>
                 <exclusion>
@@ -52,16 +64,16 @@
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-            <scope>compile</scope>
+            <version>${log4j.version}</version>
+            <scope>${project.build.scope}</scope>
         </dependency>
 
         <!--mysql JDBC-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.13</version>
-            <scope>compile</scope>
+            <version>${mysql.version}</version>
+            <scope>${project.build.scope}</scope>
         </dependency>
 
         <!-- flink的hadoop兼容 -->
@@ -69,7 +81,7 @@
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-hadoop-compatibility_2.11</artifactId>
             <version>${flink.version}</version>
-            <scope>compile</scope>
+            <scope>${project.build.scope}</scope>
         </dependency>
 
         <!-- flink的scala的api -->
@@ -77,7 +89,7 @@
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-scala_2.11</artifactId>
             <version>${flink.version}</version>
-            <scope>compile</scope>
+            <scope>${project.build.scope}</scope>
         </dependency>
 
         <!-- flink streaming的scala的api -->
@@ -85,7 +97,7 @@
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-streaming-scala_2.11</artifactId>
             <version>${flink.version}</version>
-            <scope>compile</scope>
+            <scope>${project.build.scope}</scope>
         </dependency>
 
 
@@ -94,7 +106,7 @@
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-java</artifactId>
             <version>${flink.version}</version>
-            <scope>compile</scope>
+            <scope>${project.build.scope}</scope>
         </dependency>
 
         <!-- flink streaming的java的api -->
@@ -102,7 +114,7 @@
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-streaming-java_2.11</artifactId>
             <version>${flink.version}</version>
-            <scope>compile</scope>
+            <scope>${project.build.scope}</scope>
         </dependency>
 
         <!-- flink 的kafkaconnector -->
@@ -110,7 +122,7 @@
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-connector-kafka-0.10_2.11</artifactId>
             <version>${flink.version}</version>
-            <scope>compile</scope>
+            <scope>${project.build.scope}</scope>
         </dependency>
 
 
@@ -119,6 +131,7 @@
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-statebackend-rocksdb_2.11</artifactId>
             <version>${flink.version}</version>
+            <scope>${project.build.scope}</scope>
         </dependency>
 
 
@@ -127,19 +140,56 @@
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-runtime-web_2.11</artifactId>
             <version>${flink.version}</version>
-            <scope>compile</scope>
+            <scope>${project.build.scope}</scope>
         </dependency>
+
+        <!--Flink 写文件到HDFS-->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-connector-filesystem_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+            <scope>${project.build.scope}</scope>
+        </dependency>
+
+
+        <!--redis连接-->
+
+
+        <!--Flink操作parquet格式-->
+        <dependency>
+            <groupId>org.apache.parquet</groupId>
+            <artifactId>parquet-avro</artifactId>
+            <version>${parquet.version}</version>
+            <scope>${project.build.scope}</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.parquet</groupId>
+            <artifactId>parquet-hadoop</artifactId>
+            <version>${parquet.version}</version>
+            <scope>${project.build.scope}</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-parquet_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+            <scope>${project.build.scope}</scope>
+        </dependency>
+
+
+
 
         <!--Flink Table-->
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-table-common</artifactId>
             <version>${flink.version}</version>
+            <scope>${project.build.scope}</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-table-planner-blink_${scala.binary.version}</artifactId>
             <version>${flink.version}</version>
+            <scope>${project.build.scope}</scope>
             <exclusions>
                 <exclusion>
                     <groupId>org.codehaus.janino</groupId>
@@ -151,27 +201,30 @@
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-table-api-java-bridge_${scala.binary.version}</artifactId>
             <version>${flink.version}</version>
+            <scope>${project.build.scope}</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-table-api-scala-bridge_${scala.binary.version}</artifactId>
             <version>${flink.version}</version>
+            <scope>${project.build.scope}</scope>
         </dependency>
 
-        <!--Flink CDC-->
+        <!--Flink MYSQL CDC-->
         <dependency>
             <groupId>com.alibaba.ververica</groupId>
             <!-- add the dependency matching your database -->
             <artifactId>flink-connector-mysql-cdc</artifactId>
-            <version>1.1.0</version>
+            <version>${flink.mysql.cdc.version}</version>
+            <scope>${project.build.scope}</scope>
         </dependency>
 
         <!-- 辅助类增加get set toString等方法，需要idea安装lombok插件 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.0</version>
-            <scope>compile</scope>
+            <version>${lombok.version}</version>
+            <scope>${project.build.scope}</scope>
         </dependency>
 
         <!--canal框架,解析binlog-->
@@ -179,7 +232,7 @@
             <groupId>com.alibaba.otter</groupId>
             <artifactId>canal.client</artifactId>
             <version>${canal.client.version}</version>
-            <scope>compile</scope>
+            <scope>${project.build.scope}</scope>
             <exclusions>
                 <exclusion>
                     <groupId>io.netty</groupId>
@@ -216,10 +269,11 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.51</version>
-            <scope>compile</scope>
+            <version>${fastjson.version}</version>
+            <scope>${project.build.scope}</scope>
         </dependency>
     </dependencies>
+
 
 
     <dependencyManagement>
@@ -229,7 +283,7 @@
                 <groupId>org.apache.hudi</groupId>
                 <artifactId>hudi-spark-bundle_2.11</artifactId>
                 <version>${hudi.version}</version>
-                <scope>compile</scope>
+                <scope>${project.build.scope}</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
