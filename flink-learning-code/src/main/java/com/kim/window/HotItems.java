@@ -3,8 +3,6 @@ package com.kim.window;
 import org.apache.flink.api.common.functions.FilterFunction;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.api.java.io.PojoCsvInputFormat;
-import org.apache.flink.api.java.tuple.Tuple;
-import org.apache.flink.api.java.tuple.Tuple1;
 import org.apache.flink.api.java.typeutils.PojoTypeInfo;
 import org.apache.flink.api.java.typeutils.TypeExtractor;
 import org.apache.flink.core.fs.Path;
@@ -13,10 +11,7 @@ import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.AscendingTimestampExtractor;
-import org.apache.flink.streaming.api.functions.windowing.WindowFunction;
 import org.apache.flink.streaming.api.windowing.time.Time;
-import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
-import org.apache.flink.util.Collector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,7 +30,7 @@ public class HotItems {
 
     private static final Logger logger = LoggerFactory.getLogger(HotItems.class);
 
-    public static void main(String[] args) throws URISyntaxException {
+    public static void main(String[] args) throws Exception {
 
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         //设置并行度
@@ -78,9 +73,13 @@ public class HotItems {
         filterStream
                 .keyBy(new UserBehaviorKeySelector())
                 .timeWindow(Time.minutes(60), Time.minutes(5))
-                .aggregate(new CountAgg());
+                .aggregate(new CountAgg(), new WindowResultFunction())
+                .keyBy(m-> m.getWindowEnd())
+                .process(new TopNHotItems(5))
+                .print();
 
 
 
+        env.execute("Hot Items Job");
     }
 }
