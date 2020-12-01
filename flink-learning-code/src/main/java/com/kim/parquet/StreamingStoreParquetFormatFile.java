@@ -94,8 +94,8 @@ public class StreamingStoreParquetFormatFile {
 		DateTimeBucketAssigner<ParquetPojo> bucketAssigner =
 				new DateTimeBucketAssigner<>("yyyy/MM/dd/HH", ZoneId.of("Asia/Shanghai"));
 		// 构建要写入的sink
-		StreamingFileSink<ParquetPojo> sink = StreamingFileSink.forBulkFormat(new Path("/D:/tmp/output/parquet"),
-				ParquetAvroWriters.forReflectRecord(ParquetPojo.class))
+		StreamingFileSink<ParquetPojo> sink = StreamingFileSink
+				.forBulkFormat(new Path("/D:/tmp/output/parquet"), ParquetAvroWriters.forReflectRecord(ParquetPojo.class))
 				.withBucketAssigner(bucketAssigner)
 				.build();
 
