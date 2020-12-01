@@ -1,4 +1,4 @@
-package com.kim.file;
+package com.kim.parquet;
 
 import org.apache.flink.api.common.restartstrategy.RestartStrategies;
 import org.apache.flink.api.common.time.Time;
