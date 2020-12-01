@@ -1,4 +1,4 @@
-package com.kim.file;
+package com.kim.parquet;
 
 /**
  * @Author: kim
