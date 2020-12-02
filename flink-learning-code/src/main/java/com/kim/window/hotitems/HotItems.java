@@ -1,7 +1,6 @@
-package com.kim.window;
+package com.kim.window.hotitems;
 
 import org.apache.flink.api.common.functions.FilterFunction;
-import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.api.java.io.PojoCsvInputFormat;
 import org.apache.flink.api.java.typeutils.PojoTypeInfo;
 import org.apache.flink.api.java.typeutils.TypeExtractor;
@@ -9,12 +8,9 @@ import org.apache.flink.core.fs.Path;
 import org.apache.flink.streaming.api.TimeCharacteristic;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
-import org.apache.flink.streaming.api.datastream.WindowedStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.AscendingTimestampExtractor;
-import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;
 import org.apache.flink.streaming.api.windowing.time.Time;
-import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.File;
@@ -22,7 +18,7 @@ import java.net.URL;
 
 
 /**
- * 读取CSV文件数据,对热门商品统计,每隔5分钟统计过去1小时内点击量最多的前N个商品
+ * 读取CSV文件用户行为数据,对热门商品统计,每隔5分钟统计过去1小时内点击量最多的前N个商品
  * @Author: mazhenxin
  * @File: HotItems.java
  * @Date: 2020/11/30 16:30

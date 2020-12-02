@@ -1,4 +1,4 @@
-package com.kim.window;
+package com.kim.window.hotitems;
 
 /**
  * 用户行为数据结构
