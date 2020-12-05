@@ -52,7 +52,7 @@ public class StreamingStoreParquetFormatFile {
 		//每次ck之间的间隔，不会重叠
 		checkpointConfig.setMinPauseBetweenCheckpoints(500L);
 		//每次ck的超时时间,checkpoints have to complete within one minute, or are discarded
-		checkpointConfig.setCheckpointTimeout(100L);
+		checkpointConfig.setCheckpointTimeout(1000L);
 		//如果ck执行失败，程序是否停止
 		checkpointConfig.setFailOnCheckpointingErrors(true);
 		//job在执行CANCE的时候是否删除ck数据
@@ -70,13 +70,23 @@ public class StreamingStoreParquetFormatFile {
 		DataStreamSource<String> streamSource = env.socketTextStream(hostname, port);
 		SingleOutputStreamOperator<Tuple2<String, Long>> map = streamSource
 				.map(m -> Tuple2.of(m, 1L))
-				.returns(Types.TUPLE(Types.STRING, Types.LONG));
+				.returns(Types.TUPLE(Types.STRING, Types.LONG))
+				.uid("map-tuple")
+				.name("map-tuple")
+				;
 
 		SingleOutputStreamOperator<Tuple2<String, Long>> sumStream = map
 				.keyBy(new ParquetKeySelector())
-				.sum(1);
+				.sum(1)
+				.uid("sum-stream")
+				.name("sum-stream")
+				;
+
 		SingleOutputStreamOperator<ParquetPojo> parquetStream = sumStream
-				.map(t -> new ParquetPojo(t.f0, t.f1));
+				.map(t -> new ParquetPojo(t.f0, t.f1))
+				.uid("map-parquet")
+				.name("map-parquet")
+				;
 
 
 		// 构建Parquet写入需要的格式
@@ -84,13 +94,13 @@ public class StreamingStoreParquetFormatFile {
 		DateTimeBucketAssigner<ParquetPojo> bucketAssigner =
 				new DateTimeBucketAssigner<>("yyyy/MM/dd/HH", ZoneId.of("Asia/Shanghai"));
 		// 构建要写入的sink
-		StreamingFileSink<ParquetPojo> sink = StreamingFileSink.forBulkFormat(new Path("file:///D:/output/parquet"),
-				ParquetAvroWriters.forReflectRecord(ParquetPojo.class))
+		StreamingFileSink<ParquetPojo> sink = StreamingFileSink
+				.forBulkFormat(new Path("/D:/tmp/output/parquet"), ParquetAvroWriters.forReflectRecord(ParquetPojo.class))
 				.withBucketAssigner(bucketAssigner)
 				.build();
 
 		// 写入文件
-		parquetStream.addSink(sink);
+		parquetStream.addSink(sink).uid("parquet-stream-sink").name("parquet-stream-sink");
 
 
 		env.execute("Stream data write parquet format");

@@ -22,7 +22,7 @@ object PropertiesUtil {
   def getProperties() :Properties = {
     if(properties.isEmpty){
       //读取源码中resource文件夹下的my.properties配置文件
-      val reader = this.getClass.getResourceAsStream("/myconfig.properties")
+      val reader = this.getClass.getResourceAsStream("myconfig.properties")
       properties.load(reader)
     }
     properties

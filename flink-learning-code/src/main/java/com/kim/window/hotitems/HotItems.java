@@ -1,7 +1,6 @@
-package com.kim.window;
+package com.kim.window.hotitems;
 
 import org.apache.flink.api.common.functions.FilterFunction;
-import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.api.java.io.PojoCsvInputFormat;
 import org.apache.flink.api.java.typeutils.PojoTypeInfo;
 import org.apache.flink.api.java.typeutils.TypeExtractor;
@@ -19,7 +18,7 @@ import java.net.URL;
 
 
 /**
- * 读取CSV文件数据,对热门商品统计,每隔5分钟统计过去1小时内点击量最多的前N个商品
+ * 读取CSV文件用户行为数据,对热门商品统计,每隔5分钟统计过去1小时内点击量最多的前N个商品
  * @Author: mazhenxin
  * @File: HotItems.java
  * @Date: 2020/11/30 16:30
@@ -68,8 +67,7 @@ public class HotItems {
         });
 
 
-        filterStream
-                .keyBy(new UserBehaviorKeySelector())
+        filterStream.keyBy(new UserBehaviorKeySelector())
                 .timeWindow(Time.minutes(60), Time.minutes(5))
                 .aggregate(new CountAgg(), new WindowResultFunction())
                 .keyBy(m-> m.getWindowEnd())

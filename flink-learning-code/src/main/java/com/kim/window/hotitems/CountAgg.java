@@ -1,4 +1,4 @@
-package com.kim.window;
+package com.kim.window.hotitems;
 
 import org.apache.flink.api.common.functions.AggregateFunction;
 
