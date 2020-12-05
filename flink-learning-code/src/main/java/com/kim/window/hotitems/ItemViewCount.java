@@ -1,4 +1,4 @@
-package com.kim.window;
+package com.kim.window.hotitems;
 
 /**
  * 商品点击量(窗口操作的输出类型)
