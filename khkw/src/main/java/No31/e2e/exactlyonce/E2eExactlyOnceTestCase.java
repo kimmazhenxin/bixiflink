@@ -59,7 +59,7 @@ public class E2eExactlyOnceTestCase {
 			public void run(SourceContext<Tuple2<String, Long>> ctx) throws Exception {
 				while (true) {
 					ctx.collect(new Tuple2<>("key", System.currentTimeMillis()));
-					Thread.sleep(1L);
+					Thread.sleep(500L);
 				}
 			}
 
