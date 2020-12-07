@@ -3,15 +3,13 @@ package No31.e2e.exactlyonce.function;
 import org.apache.flink.api.common.state.ListState;
 import org.apache.flink.api.common.state.ListStateDescriptor;
 import org.apache.flink.api.common.typeinfo.BasicTypeInfo;
-import org.apache.flink.api.common.typeinfo.TypeInformation;
-import org.apache.flink.runtime.state.CheckpointListener;
+import org.apache.flink.api.java.tuple.Tuple3;
 import org.apache.flink.runtime.state.FunctionInitializationContext;
 import org.apache.flink.runtime.state.FunctionSnapshotContext;
 import org.apache.flink.streaming.api.checkpoint.CheckpointedFunction;
 import org.apache.flink.streaming.api.functions.source.RichParallelSourceFunction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import scala.Tuple3;
 
 /**
  *
@@ -41,7 +39,7 @@ public class ParallelCheckpointedSource
     // 当前任务实例的编号
     private transient int insexOfTask;
 
-    private String name = "";
+    private String name = "-";
 
     public ParallelCheckpointedSource() {
     }
@@ -84,11 +82,12 @@ public class ParallelCheckpointedSource
         insexOfTask = getRuntimeContext().getIndexOfThisSubtask();
 
         ListStateDescriptor<Long> listStateDescriptor =
-                new ListStateDescriptor<>("list state descriptor", BasicTypeInfo.LONG_TYPE_INFO);
+                new ListStateDescriptor<>(OFFSET_STATE_NAME, BasicTypeInfo.LONG_TYPE_INFO);
 
         this.offsetState = context.getOperatorStateStore().getListState(listStateDescriptor);
 
 
+        logger.warn("listState is " + offsetState);
         // 容错恢复时
         if (context.isRestored()) {
             for (Long offsetValue: this.offsetState.get()) {

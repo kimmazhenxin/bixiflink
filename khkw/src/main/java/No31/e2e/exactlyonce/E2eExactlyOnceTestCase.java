@@ -1,11 +1,18 @@
 package No31.e2e.exactlyonce;
 
+import No31.e2e.exactlyonce.function.MapFunctionWithException;
+import No31.e2e.exactlyonce.function.ParallelCheckpointedSource;
+import No31.e2e.exactlyonce.function.StateProcessFunction;
+import No31.e2e.exactlyonce.function.Tuple3KeySelector;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.restartstrategy.RestartStrategies;
 import org.apache.flink.api.common.time.Time;
 import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.api.java.tuple.Tuple3;
+import org.apache.flink.streaming.api.CheckpointingMode;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.KeyedStream;
+import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
 import org.slf4j.Logger;
@@ -39,8 +46,12 @@ public class E2eExactlyOnceTestCase {
 
 
 		atMostOnce(env);
+		atLeastOnce(env);
+		exactlyOnce(env);
+		exactlyOnce2(env);
 
 
+		e2eExactlyOnce(env);
 
 
 
@@ -82,19 +93,43 @@ public class E2eExactlyOnceTestCase {
 	}
 
 
+
 	private static void atLeastOnce(StreamExecutionEnvironment env) {
+		env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.AT_LEAST_ONCE);
+		KeyedStream<Tuple3<String, Long, String>, String> stream = basicLogic(env);
+		stream.process(new StateProcessFunction()).print();
+	}
 
 
+	private static void exactlyOnce(StreamExecutionEnvironment env) {
+		env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.AT_LEAST_ONCE);
+		KeyedStream<Tuple3<String, Long, String>, String> stream = basicLogic(env);
+		stream.process(new StateProcessFunction()).print();
+	}
 
+
+	private static void exactlyOnce2(StreamExecutionEnvironment env) {
+		env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.AT_LEAST_ONCE);
+		KeyedStream<Tuple3<String, Long, String>, String> stream = basicLogic(env);
+		stream.print();
+	}
+
+
+	private static void e2eExactlyOnce(StreamExecutionEnvironment env) {
 
 	}
 
 
 
+	private static KeyedStream<Tuple3<String, Long, String>, String > basicLogic(StreamExecutionEnvironment env) {
+		DataStreamSource<Tuple3<String, Long, String>> s1 =
+				env.addSource(new ParallelCheckpointedSource("S1"));
+		DataStreamSource<Tuple3<String, Long, String>> s2 =
+				env.addSource(new ParallelCheckpointedSource("S2"));
+		SingleOutputStreamOperator<Tuple3<String, Long, String>> ds1 = s1.map(new MapFunctionWithException(10L));
+		SingleOutputStreamOperator<Tuple3<String, Long, String>> ds2 = s2.map(new MapFunctionWithException(200L));
 
-
-	private static KeyedStream basicLogic(StreamExecutionEnvironment env) {
-		return null;
+		return ds1.union(ds2).keyBy(new Tuple3KeySelector());
 	}
 
 }
