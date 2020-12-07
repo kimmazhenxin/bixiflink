@@ -5,6 +5,7 @@ import org.apache.flink.api.common.restartstrategy.RestartStrategies;
 import org.apache.flink.api.common.time.Time;
 import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
+import org.apache.flink.streaming.api.datastream.KeyedStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.source.SourceFunction;
 import org.slf4j.Logger;
@@ -32,7 +33,7 @@ public class E2eExactlyOnceTestCase {
 		StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 		env.setParallelism(1);
 
-		env.enableCheckpointing(2000L);
+		env.enableCheckpointing(1000L);
 		env.setRestartStrategy(RestartStrategies.fixedDelayRestart(3, Time.of(2, TimeUnit.SECONDS)));
 
 
@@ -54,12 +55,11 @@ public class E2eExactlyOnceTestCase {
 	 */
 	private static  void atMostOnce(StreamExecutionEnvironment env) {
 		DataStreamSource<Tuple2<String, Long>> source = env.addSource(new SourceFunction<Tuple2<String, Long>>() {
-
 			@Override
 			public void run(SourceContext<Tuple2<String, Long>> ctx) throws Exception {
 				while (true) {
 					ctx.collect(new Tuple2<>("key", System.currentTimeMillis()));
-					Thread.sleep(1L);
+					Thread.sleep(500L);
 				}
 			}
 
@@ -82,8 +82,19 @@ public class E2eExactlyOnceTestCase {
 	}
 
 
+	private static void atLeastOnce(StreamExecutionEnvironment env) {
 
 
 
+
+	}
+
+
+
+
+
+	private static KeyedStream basicLogic(StreamExecutionEnvironment env) {
+		return null;
+	}
 
 }
