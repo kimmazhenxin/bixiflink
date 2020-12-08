@@ -74,6 +74,7 @@ public class ParallelCheckpointedSource
           this.offsetState.clear();
           // 持久化最新的offset
           this.offsetState.add(offset);
+          logger.warn(String.format("Source name is [%s], Source CP SUCCESS", name));
         }
     }
 

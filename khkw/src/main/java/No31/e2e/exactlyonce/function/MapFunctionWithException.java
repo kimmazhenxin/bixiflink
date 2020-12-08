@@ -18,12 +18,15 @@ public class MapFunctionWithException
 	// 延迟时长
 	private long delay;
 
+	private String name;
+
 	private transient volatile boolean needFail = false;
 
 	public MapFunctionWithException() {
 	}
 
-	public MapFunctionWithException(long delay) {
+	public MapFunctionWithException(String name, long delay) {
+		this.name = name;
 		this.delay = delay;
 	}
 
@@ -36,7 +39,7 @@ public class MapFunctionWithException
 	public Tuple3<String, Long, String> map(Tuple3<String, Long, String> value) throws Exception {
 		Thread.sleep(delay);
 		if (needFail) {
-			throw new RuntimeException("Error for testing......");
+			throw new RuntimeException(name + " Error for testing......");
 		}
 
 		return value;
@@ -45,7 +48,7 @@ public class MapFunctionWithException
 	@Override
 	public void notifyCheckpointComplete(long checkpointId) throws Exception {
 		this.needFail = true;
-		System.err.println(String.format("MAP - CP SUCCESS [%d]", checkpointId));
+		System.err.println(String.format("Source name is [%s], MAP - CP SUCCESS [%d]", this.name, checkpointId));
 	}
 
 	@Override

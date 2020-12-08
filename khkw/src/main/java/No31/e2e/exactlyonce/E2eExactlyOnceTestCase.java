@@ -24,10 +24,10 @@ import java.util.concurrent.TimeUnit;
  * 项目名称: Apache Flink 知其然，知其所以然 - khkw.e2e.exactlyonce.functions
  * 功能描述: 本测试核心是演示流计算语义 at-most-once, at-least-once, exactly-once, e2e-exactly-once.
  * 操作步骤: 1. 直接运行程序，观察atMostOnce语义效果；
- *         2. 打开atLeastOnce(env)，观察atLeastOnce效果,主要是要和exactlyOnce进行输出对比。
- *         3. 打开exactlyOnce(env)，观察exactlyOnce效果，主要是要和atLeastOnce进行输出对比。
- *         4. 打开exactlyOnce2(env)，观察print效果(相当于sink），主要是要和e2eExactlyOnce进行输出对比。
- *         5. 打开e2eExactlyOnce(env)，观察print效果(相当于sink），主要是要和exactlyOnce2(env)进行输出对比。
+ *          2. 打开atLeastOnce(env)，观察atLeastOnce效果,主要是要和exactlyOnce进行输出对比。
+ *          3. 打开exactlyOnce(env)，观察exactlyOnce效果，主要是要和atLeastOnce进行输出对比。
+ *          4. 打开exactlyOnce2(env)，观察print效果(相当于sink），主要是要和e2eExactlyOnce进行输出对比。
+ *          5. 打开e2eExactlyOnce(env)，观察print效果(相当于sink），主要是要和exactlyOnce2(env)进行输出对比。
  * @Author: kim
  * @Date: 2020/12/5 16:39
  * @Version: 1.0
@@ -47,8 +47,8 @@ public class E2eExactlyOnceTestCase {
 
 		//atMostOnce(env);
 		//atLeastOnce(env);
-		//exactlyOnce(env);
-		exactlyOnce2(env);
+		exactlyOnce(env);
+		//exactlyOnce2(env);
 
 
 		//e2eExactlyOnce(env);
@@ -122,12 +122,14 @@ public class E2eExactlyOnceTestCase {
 
 
 	private static KeyedStream<Tuple3<String, Long, String>, String > basicLogic(StreamExecutionEnvironment env) {
+		String sourceName1 = "S1";
+		String sourceName2 = "S2";
 		DataStreamSource<Tuple3<String, Long, String>> s1 =
-				env.addSource(new ParallelCheckpointedSource("S1"));
+				env.addSource(new ParallelCheckpointedSource(sourceName1));
 		DataStreamSource<Tuple3<String, Long, String>> s2 =
-				env.addSource(new ParallelCheckpointedSource("S2"));
-		SingleOutputStreamOperator<Tuple3<String, Long, String>> ds1 = s1.map(new MapFunctionWithException(10L));
-		SingleOutputStreamOperator<Tuple3<String, Long, String>> ds2 = s2.map(new MapFunctionWithException(200L));
+				env.addSource(new ParallelCheckpointedSource(sourceName2));
+		SingleOutputStreamOperator<Tuple3<String, Long, String>> ds1 = s1.map(new MapFunctionWithException(sourceName1, 10L));
+		SingleOutputStreamOperator<Tuple3<String, Long, String>> ds2 = s2.map(new MapFunctionWithException(sourceName2,200L));
 
 		return ds1.union(ds2).keyBy(new Tuple3KeySelector());
 	}

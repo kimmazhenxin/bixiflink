@@ -40,6 +40,7 @@ public class StateProcessFunction
 
 	@Override
 	public void processElement(Tuple3<String, Long, String> value, Context ctx, Collector<Tuple3<String, Long, String>> out) throws Exception {
+		//throw new RuntimeException(".........");
 		boolean isDuplicate = false;
 		Iterator<Tuple3<String, Long, String>> it = processData.get().iterator();
 		while (it.hasNext()) {
