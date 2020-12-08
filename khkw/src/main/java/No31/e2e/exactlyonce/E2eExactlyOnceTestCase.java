@@ -4,6 +4,7 @@ import No31.e2e.exactlyonce.function.MapFunctionWithException;
 import No31.e2e.exactlyonce.function.ParallelCheckpointedSource;
 import No31.e2e.exactlyonce.function.StateProcessFunction;
 import No31.e2e.exactlyonce.function.Tuple3KeySelector;
+import No31.e2e.exactlyonce.sink.E2EExactlyOnceSinkFunction;
 import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.restartstrategy.RestartStrategies;
 import org.apache.flink.api.common.time.Time;
@@ -40,7 +41,7 @@ public class E2eExactlyOnceTestCase {
 		StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 		env.setParallelism(1);
 
-		env.enableCheckpointing(1000L);
+		env.enableCheckpointing(2000L);
 		env.setRestartStrategy(RestartStrategies.fixedDelayRestart(3, Time.of(2, TimeUnit.SECONDS)));
 
 
@@ -93,7 +94,9 @@ public class E2eExactlyOnceTestCase {
 	}
 
 
-
+	/**
+	 * 设置at-least-once,此时在process算子处没有进行Barrier对齐,会有重复数据输出
+	 */
 	private static void atLeastOnce(StreamExecutionEnvironment env) {
 		env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.AT_LEAST_ONCE);
 		KeyedStream<Tuple3<String, Long, String>, String> stream = basicLogic(env);
@@ -101,6 +104,9 @@ public class E2eExactlyOnceTestCase {
 	}
 
 
+	/**
+	 * 设置exactly-once,此时在process算子处有进行Barrier对齐,不会有重复数据输出
+	 */
 	private static void exactlyOnce(StreamExecutionEnvironment env) {
 		env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.EXACTLY_ONCE);
 		KeyedStream<Tuple3<String, Long, String>, String> stream = basicLogic(env);
@@ -108,6 +114,9 @@ public class E2eExactlyOnceTestCase {
 	}
 
 
+	/**
+	 * 设置exactly-once情况下,出现重复数据输出
+	 */
 	private static void exactlyOnce2(StreamExecutionEnvironment env) {
 		env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.EXACTLY_ONCE);
 		KeyedStream<Tuple3<String, Long, String>, String> stream = basicLogic(env);
@@ -115,7 +124,12 @@ public class E2eExactlyOnceTestCase {
 	}
 
 
+	/**
+	 * 精准一次
+	 */
 	private static void e2eExactlyOnce(StreamExecutionEnvironment env) {
+		env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.EXACTLY_ONCE);
+		basicLogic(env).addSink(new E2EExactlyOnceSinkFunction()).uid("E2E-ExactlyOnceSink").name("E2E-ExactlyOnceSink");
 
 	}
 
@@ -129,7 +143,7 @@ public class E2eExactlyOnceTestCase {
 		DataStreamSource<Tuple3<String, Long, String>> s2 =
 				env.addSource(new ParallelCheckpointedSource(sourceName2));
 		SingleOutputStreamOperator<Tuple3<String, Long, String>> ds1 = s1.map(new MapFunctionWithException(sourceName1, 10L));
-		SingleOutputStreamOperator<Tuple3<String, Long, String>> ds2 = s2.map(new MapFunctionWithException(sourceName2,200L));
+		SingleOutputStreamOperator<Tuple3<String, Long, String>> ds2 = s2.map(new MapFunctionWithException(sourceName2, 10L));
 
 		return ds1.union(ds2).keyBy(new Tuple3KeySelector());
 	}
