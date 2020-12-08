@@ -87,13 +87,15 @@ public class ParallelCheckpointedSource
         this.offsetState = context.getOperatorStateStore().getListState(listStateDescriptor);
 
 
-        logger.warn("listState is " + offsetState);
         // 容错恢复时
         if (context.isRestored()) {
+            int listStateSize = 0;
             for (Long offsetValue: this.offsetState.get()) {
+                listStateSize++;
                 this.offset = offsetValue;
                 logger.error(String.format("Current Source [%s] Restore from offset [%d]", this.name, this.offset));
             }
+            logger.warn(String.format("name is [%s], listState size is [%d]" ,this.name, listStateSize));
         }
     }
 }

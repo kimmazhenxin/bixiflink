@@ -45,13 +45,13 @@ public class E2eExactlyOnceTestCase {
 
 
 
-		atMostOnce(env);
-		atLeastOnce(env);
-		exactlyOnce(env);
+		//atMostOnce(env);
+		//atLeastOnce(env);
+		//exactlyOnce(env);
 		exactlyOnce2(env);
 
 
-		e2eExactlyOnce(env);
+		//e2eExactlyOnce(env);
 
 
 
@@ -102,14 +102,14 @@ public class E2eExactlyOnceTestCase {
 
 
 	private static void exactlyOnce(StreamExecutionEnvironment env) {
-		env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.AT_LEAST_ONCE);
+		env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.EXACTLY_ONCE);
 		KeyedStream<Tuple3<String, Long, String>, String> stream = basicLogic(env);
 		stream.process(new StateProcessFunction()).print();
 	}
 
 
 	private static void exactlyOnce2(StreamExecutionEnvironment env) {
-		env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.AT_LEAST_ONCE);
+		env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.EXACTLY_ONCE);
 		KeyedStream<Tuple3<String, Long, String>, String> stream = basicLogic(env);
 		stream.print();
 	}

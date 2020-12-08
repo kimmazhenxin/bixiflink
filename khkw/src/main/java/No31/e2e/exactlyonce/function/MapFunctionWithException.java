@@ -50,6 +50,6 @@ public class MapFunctionWithException
 
 	@Override
 	public void notifyCheckpointAborted(long checkpointId) throws Exception {
-		System.err.println(String.format("MAP - CP FAIL [%d]", checkpointId));
+		System.err.println(String.format("MAP - CP FAIL    [%d]", checkpointId));
 	}
 }
