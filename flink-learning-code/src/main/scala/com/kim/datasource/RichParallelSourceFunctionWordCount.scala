@@ -26,7 +26,7 @@ class RichParallelSourceFunctionWordCount extends RichParallelSourceFunction[Str
   //在source开启的时候执行一次，比如可以在这里开启mysql的连接
   //注意:每个slot都会调用这个方法
   override def open(parameters: Configuration): Unit = {
-    println("open")
+    //println("source open..........")
     num = 1000
   }
 
@@ -58,7 +58,7 @@ class RichParallelSourceFunctionWordCount extends RichParallelSourceFunction[Str
         Thread.sleep(1000)
         num += 1
         //source的退出条件
-        if (num >= 1005) break()
+        if (num >= 5005) break()
       }
     }
     isCloseMysql = false
@@ -89,7 +89,8 @@ object RichParallelSourceFunctionWordCount {
 
 
     //获取local运行环境并且带上webUI
-    val env: StreamExecutionEnvironment = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(config)
+//    val env: StreamExecutionEnvironment = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(config)
+    val env: StreamExecutionEnvironment = StreamExecutionEnvironment.getExecutionEnvironment
     // 使用自定义的source
     val text: DataStream[String] = env.addSource(new RichParallelSourceFunctionWordCount)
 
@@ -103,29 +104,35 @@ object RichParallelSourceFunctionWordCount {
 
     //使用FlatMapFunction自定义函数来完成flatMap和map的组合功能
     //和上面是一样的
-    val wordCount: DataStream[(String, Int)] = text.flatMap(new FlatMapFunction[String, (String, Int)] {
-      //value:输入	out:输出
+//    val wordCount: DataStream[(String, Int)] = text.flatMap(new FlatMapFunction[String, (String, Int)] {
+//      //value:输入	out:输出
+//      override def flatMap(value: String, out: Collector[(String, Int)]): Unit = {
+//        val strs: Array[String] = value.split(" ")
+//        for (s <- strs) {
+//          //把数据输出出去
+//          out.collect((s, 1))
+//        }
+//      }
+//    }).keyBy(0).sum(1)
+
+    //也可以使用,里面的方法更丰富
+    val s: DataStream[(String, Int)] = text.flatMap(new RichFlatMapFunction[String, (String, Int)] {
       override def flatMap(value: String, out: Collector[(String, Int)]): Unit = {
         val strs: Array[String] = value.split(" ")
         for (s <- strs) {
-          //把数据输出出去
           out.collect((s, 1))
         }
       }
-    }).keyBy(0).sum(1)
-
-    //也可以使用,里面的方法更丰富
-//    val s: DataStream[(String, Int)] = text.flatMap(new RichFlatMapFunction[String, (String, Int)] {
-//      override def flatMap(value: String, out: Collector[(String, Int)]): Unit = {
-//        out.collect(("", 1))
-//      }
-//      override def open(parameters: Configuration): Unit = super.open(parameters)
-//    })
+      override def open(parameters: Configuration): Unit = {
+        println("flatMap open ..........................")
+        super.open(parameters)
+      }
+    }).setParallelism(9).keyBy(0).sum(1)
 
 
     
     //定义sink打印出控制台
-    wordCount.print()
+    s.print()
 
     //打印任务的执行计划
     println(env.getExecutionPlan)
