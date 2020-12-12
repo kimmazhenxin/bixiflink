@@ -55,7 +55,6 @@ public class E2eExactlyOnceTestCase {
 		//e2eExactlyOnce(env);
 
 
-
 		env.execute("E2E-Exactly-Once");
 	}
 
@@ -105,7 +104,7 @@ public class E2eExactlyOnceTestCase {
 
 
 	/**
-	 * 设置exactly-once,此时在process算子处有进行Barrier对齐,不会有重复数据输出
+	 * 设置exactly-once,此时在process算子处有进行Barrier对齐,而且只会从上一次CP完成后保存的状态数据中查询是否有重复数据,显然对齐方式不会有重复数据输出
 	 */
 	private static void exactlyOnce(StreamExecutionEnvironment env) {
 		env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.EXACTLY_ONCE);
@@ -115,7 +114,7 @@ public class E2eExactlyOnceTestCase {
 
 
 	/**
-	 * 设置exactly-once情况下,出现重复数据输出
+	 * 即使设置exactly-once情况下,出现重复数据输出
 	 */
 	private static void exactlyOnce2(StreamExecutionEnvironment env) {
 		env.getCheckpointConfig().setCheckpointingMode(CheckpointingMode.EXACTLY_ONCE);

@@ -13,7 +13,8 @@ import org.slf4j.LoggerFactory;
 import java.util.Iterator;
 
 /**
- * 检验是否是重复消费
+ * 检验是否是重复消费,每个元素和上一次CP完的状态数据进行比较查找
+ * 如果存在对齐,那就不会有数据输出;不存在对齐,就意味着重复消费,会有数据输出
  * @Author: kim
  * @Date: 2020/12/7 22:38
  * @Version: 1.0
