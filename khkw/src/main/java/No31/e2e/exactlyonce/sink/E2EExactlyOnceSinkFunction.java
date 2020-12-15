@@ -6,6 +6,8 @@ import org.apache.flink.api.java.tuple.Tuple3;
 import org.apache.flink.api.java.typeutils.runtime.kryo.KryoSerializer;
 import org.apache.flink.streaming.api.functions.sink.TwoPhaseCommitSinkFunction;
 
+import java.util.UUID;
+
 /**
  * 项目名称: Apache Flink 知其然，知其所以然 - khkw.e2e.exactlyonce.functions
  * 功能描述: 端到端的精准一次语义sink示例（测试）
@@ -25,28 +27,36 @@ public class E2EExactlyOnceSinkFunction extends
 		super(new KryoSerializer<>(TransactionTable.class, new ExecutionConfig()), VoidSerializer.INSTANCE);
 	}
 
+
 	@Override
-	protected void invoke(TransactionTable transaction, Tuple3<String, Long, String> value, Context context) throws Exception {
+	protected void invoke(TransactionTable table, Tuple3<String, Long, String> value, Context context) throws Exception {
+		table.insert(value);
 
 	}
 
+	/**
+	 * Call on initializeState
+	 */
 	@Override
 	protected TransactionTable beginTransaction() throws Exception {
-		return null;
+		return TransactionDB.getInstance().createTable(String.format("TransID-[%S]", UUID.randomUUID().toString()));
 	}
 
-	@Override
-	protected void preCommit(TransactionTable transaction) throws Exception {
-
-	}
 
 	@Override
-	protected void commit(TransactionTable transaction) {
+	protected void preCommit(TransactionTable table) throws Exception {
 
 	}
 
+
 	@Override
-	protected void abort(TransactionTable transaction) {
+	protected void commit(TransactionTable table) {
+
+	}
+
+
+	@Override
+	protected void abort(TransactionTable table) {
 
 	}
 }
