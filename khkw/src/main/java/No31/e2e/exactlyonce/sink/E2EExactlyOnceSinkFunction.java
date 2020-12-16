@@ -35,7 +35,7 @@ public class E2EExactlyOnceSinkFunction extends
 	}
 
 	/**
-	 * Call on initializeState
+	 * Call on initializeState/snapshotState
 	 */
 	@Override
 	protected TransactionTable beginTransaction() throws Exception {
@@ -43,20 +43,36 @@ public class E2EExactlyOnceSinkFunction extends
 	}
 
 
+	/**
+	 * Call on snapshotState
+	 * 将数据写到临时的存储中
+	 */
 	@Override
 	protected void preCommit(TransactionTable table) throws Exception {
-
+		table.flush();
+		table.close();
 	}
 
 
+	/**
+	 * Call on notifyCheckpointComplete()
+	 * Flink框架真正做完CP的时候来调用这个,把数据真正写入到外部存储系统中
+	 * @param table
+	 */
 	@Override
 	protected void commit(TransactionTable table) {
-
+		System.err.println(String.format("SINK - CP SUCCESS [%s]", table.getTransactionId()));
+		TransactionDB.getInstance().secondPhase(table.getTransactionId());
 	}
 
 
+	/**
+	 * Call on close()
+	 * @param table
+	 */
 	@Override
 	protected void abort(TransactionTable table) {
-
+		TransactionDB.getInstance().removeTable("Abort", table.getTransactionId());
+		table.close();
 	}
 }

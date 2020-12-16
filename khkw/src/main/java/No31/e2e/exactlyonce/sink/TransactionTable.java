@@ -33,9 +33,21 @@ public class TransactionTable implements Serializable {
     }
 
     public TransactionTable insert(Tuple3<String, Long, String> value) {
-
+        initDB();
+        // 投产的话,应该逻辑写到远端DB或者文件系统等
         buffer.add(value);
         return this;
+    }
+
+
+    public TransactionTable flush() {
+        initDB();
+        db.firstPhase(transactionId, buffer);
+        return this;
+    }
+
+    public void close() {
+        buffer.clear();
     }
 
     private void initDB() {
@@ -43,7 +55,4 @@ public class TransactionTable implements Serializable {
             db = TransactionDB.getInstance();
         }
     }
-
-
-
 }
