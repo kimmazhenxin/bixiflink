@@ -147,6 +147,14 @@
         </dependency>
 
 
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-test-utils_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+            <scope>${project.build.scope}</scope>
+        </dependency>
+
+
         <!--redis连接-->
 
 
