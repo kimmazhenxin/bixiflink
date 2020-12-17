@@ -4,6 +4,7 @@ import org.apache.flink.api.common.ExecutionConfig;
 import org.apache.flink.api.common.typeutils.base.VoidSerializer;
 import org.apache.flink.api.java.tuple.Tuple3;
 import org.apache.flink.api.java.typeutils.runtime.kryo.KryoSerializer;
+import org.apache.flink.runtime.state.FunctionInitializationContext;
 import org.apache.flink.streaming.api.functions.sink.TwoPhaseCommitSinkFunction;
 
 import java.util.UUID;
@@ -75,4 +76,6 @@ public class E2EExactlyOnceSinkFunction extends
 		TransactionDB.getInstance().removeTable("Abort", table.getTransactionId());
 		table.close();
 	}
+
+
 }

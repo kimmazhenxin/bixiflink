@@ -21,7 +21,6 @@ public class TransactionDB {
 
     // 事务ID和数据结果集的Mapping映射关系
     private final Map<String, List<Tuple3<String, Long, String>>> transactionRecords = new HashMap<>();
-
     private static TransactionDB instance;
 
 
@@ -29,14 +28,12 @@ public class TransactionDB {
 
     }
 
-
     public static synchronized TransactionDB getInstance() {
         if (instance == null) {
             instance = new TransactionDB();
         }
         return instance;
     }
-
 
     /**
      * 创建当前事务的临时存储
@@ -49,7 +46,6 @@ public class TransactionDB {
         return new TransactionTable(transactionId);
     }
 
-
     /**
      * 第一阶段提价,将事务id对应的结果数据集
      * @param transactionId
@@ -59,7 +55,6 @@ public class TransactionDB {
         List<Tuple3<String, Long, String>> content = transactionRecords.get(transactionId);
         content.addAll(values);
     }
-
 
     /**
      * 第二阶段提交,将事务id的结果集真正写入外部存储系统中
@@ -83,7 +78,6 @@ public class TransactionDB {
         removeTable("Notify or Recovery", transactionId);
         logger.error(String.format("Persist current transaction...[%s] records...[SUCCESS]", transactionId));
     }
-
 
     private void print(Tuple3<String, Long, String> record) {
         logger.error(record.toString());
