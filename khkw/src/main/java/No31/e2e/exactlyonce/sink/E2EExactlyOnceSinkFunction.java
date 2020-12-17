@@ -37,6 +37,7 @@ public class E2EExactlyOnceSinkFunction extends
 
 	/**
 	 * Call on initializeState/snapshotState
+	 * 产生下一个事务ID
 	 */
 	@Override
 	protected TransactionTable beginTransaction() throws Exception {

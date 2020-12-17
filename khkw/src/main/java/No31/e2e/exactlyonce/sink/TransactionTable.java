@@ -19,7 +19,7 @@ import java.util.List;
 public class TransactionTable implements Serializable {
     private static final Logger logger = LoggerFactory.getLogger(TransactionTable.class);
 
-    private transient  TransactionDB db;
+    private transient TransactionDB db;
     private final String transactionId;
     private final List<Tuple3<String, Long, String>> buffer = new ArrayList<>();
 
