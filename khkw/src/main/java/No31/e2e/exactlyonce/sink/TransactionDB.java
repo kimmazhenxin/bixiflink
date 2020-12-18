@@ -54,6 +54,7 @@ public class TransactionDB {
     public void firstPhase(String transactionId, List<Tuple3<String, Long, String>> values) {
         List<Tuple3<String, Long, String>> content = transactionRecords.get(transactionId);
         content.addAll(values);
+        logger.error(String.format("firstPhase ...... [%s] records... size is [%s] ...", transactionId, content.size()));
     }
 
     /**
@@ -67,6 +68,7 @@ public class TransactionDB {
         if (null == content) {
             return;
         }
+        logger.warn("size ......." + content.size());
         content.forEach(this::print);
 
         // 提醒大家,下面这行非常重要,因为NotifyCheckpoint 和 InitializeState(即Recovery)都会调用.

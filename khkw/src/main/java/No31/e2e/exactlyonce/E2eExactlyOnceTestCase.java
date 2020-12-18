@@ -45,11 +45,11 @@ public class E2eExactlyOnceTestCase {
 		env.setRestartStrategy(RestartStrategies.fixedDelayRestart(3, Time.of(2, TimeUnit.SECONDS)));
 
 
-
+		logger.warn("..................................................... test....................................");
 		//atMostOnce(env);
 		//atLeastOnce(env);
-		exactlyOnce(env);
-		//exactlyOnce2(env);
+		//exactlyOnce(env);
+		exactlyOnce2(env);
 
 
 		//e2eExactlyOnce(env);
@@ -142,7 +142,7 @@ public class E2eExactlyOnceTestCase {
 		DataStreamSource<Tuple3<String, Long, String>> s2 =
 				env.addSource(new ParallelCheckpointedSource(sourceName2));
 		SingleOutputStreamOperator<Tuple3<String, Long, String>> ds1 = s1.map(new MapFunctionWithException(sourceName1, 10L));
-		SingleOutputStreamOperator<Tuple3<String, Long, String>> ds2 = s2.map(new MapFunctionWithException(sourceName2, 10L));
+		SingleOutputStreamOperator<Tuple3<String, Long, String>> ds2 = s2.map(new MapFunctionWithException(sourceName2, 200L));
 
 		return ds1.union(ds2).keyBy(new Tuple3KeySelector());
 	}
