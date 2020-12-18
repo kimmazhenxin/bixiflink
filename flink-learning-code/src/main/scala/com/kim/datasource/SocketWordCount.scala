@@ -1,5 +1,6 @@
 package com.kim.datasource
 
+import com.kim.utils.CheckpointRestoreByIDEUtils
 import org.apache.flink.api.common.functions.{FlatMapFunction, RichFlatMapFunction}
 import org.apache.flink.api.java.utils.ParameterTool
 import org.apache.flink.configuration.{ConfigConstants, Configuration}
@@ -87,5 +88,10 @@ object SocketWordCount {
 		//定义任务的名称并运行
 		//注意：operator是惰性的，只有遇到execute才执行
 		env.execute("SocketWordCount")
+
+		//使用checkpoint本地恢复功能,必须要注释掉上面的env.execute()
+		val externalCheckpoint: String = "file:///tmp/checkpoint//SocketWordCount"
+		CheckpointRestoreByIDEUtils.run(env.getStreamGraph, externalCheckpoint)
+
   }
 }
