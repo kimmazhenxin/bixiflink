@@ -45,14 +45,13 @@ public class E2eExactlyOnceTestCase {
 		env.setRestartStrategy(RestartStrategies.fixedDelayRestart(3, Time.of(2, TimeUnit.SECONDS)));
 
 
-		logger.warn("..................................................... test....................................");
 		//atMostOnce(env);
 		//atLeastOnce(env);
 		//exactlyOnce(env);
-		exactlyOnce2(env);
+		//exactlyOnce2(env);
 
 
-		//e2eExactlyOnce(env);
+		e2eExactlyOnce(env);
 
 
 		env.execute("E2E-Exactly-Once");
