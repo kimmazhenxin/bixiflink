@@ -99,7 +99,6 @@
             <scope>${project.build.scope}</scope>
         </dependency>
 
-
         <!-- flink的java的api -->
         <dependency>
             <groupId>org.apache.flink</groupId>
@@ -116,10 +115,10 @@
             <scope>${project.build.scope}</scope>
         </dependency>
 
-        <!-- flink 的kafkaconnector -->
+        <!-- flink 的kafka connector -->
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-connector-kafka-0.10_2.11</artifactId>
+            <artifactId>flink-connector-kafka-0.10_${scala.binary.version}</artifactId>
             <version>${flink.version}</version>
             <scope>${project.build.scope}</scope>
         </dependency>
@@ -132,7 +131,6 @@
             <version>${flink.version}</version>
             <scope>${project.build.scope}</scope>
         </dependency>
-
 
         <!-- flink运行时的webUI -->
         <dependency>
@@ -195,13 +193,15 @@
         </dependency>
 
 
-        <!--Flink Table-->
+        <!--Flink Table如下配置-->
+        <!-- 支持一些自定义的消息格式，比如kafka里面消息格式是json的，或者需要自定义函数支持 -->
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-table-common</artifactId>
             <version>${flink.version}</version>
             <scope>${project.build.scope}</scope>
         </dependency>
+        <!-- 使用Blink Planner -->
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-table-planner-blink_${scala.binary.version}</artifactId>
@@ -217,6 +217,31 @@
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-table-api-scala-bridge_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+            <scope>${project.build.scope}</scope>
+        </dependency>
+
+
+        <!-- JDBC Connector的支持，本案例会是使用MySQL -->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-connector-jdbc_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+            <scope>${project.build.scope}</scope>
+        </dependency>
+
+        <!-- Kafka Connector的支持-->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-sql-connector-kafka-0.10_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+            <scope>${project.build.scope}</scope>
+        </dependency>
+
+        <!-- Kafka里面的消息采用Json格式 -->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-json</artifactId>
             <version>${flink.version}</version>
             <scope>${project.build.scope}</scope>
         </dependency>
