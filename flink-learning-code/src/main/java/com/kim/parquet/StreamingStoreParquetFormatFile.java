@@ -16,6 +16,7 @@ import org.apache.flink.streaming.api.environment.CheckpointConfig;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.sink.filesystem.StreamingFileSink;
 import org.apache.flink.streaming.api.functions.sink.filesystem.bucketassigners.DateTimeBucketAssigner;
+import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,7 +33,7 @@ public class StreamingStoreParquetFormatFile {
 
 	private  static final Logger logger  = LoggerFactory.getLogger(StreamingStoreParquetFormatFile.class);
 
-	public static void main(String[] args) throws Exception {
+	public static void main(@NotNull String[] args) throws Exception {
 
 		if (args.length != 2) {
 			logger.error("USAGE:\nSocketWordCount <hostname> <port>");
