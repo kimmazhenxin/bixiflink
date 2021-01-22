@@ -68,7 +68,6 @@ public class TransactionDB {
         if (null == content) {
             return;
         }
-        logger.warn("size ......." + content.size());
         content.forEach(this::print);
 
         // 提醒大家,下面这行非常重要,因为NotifyCheckpoint 和 InitializeState(即Recovery)都会调用.

@@ -58,7 +58,7 @@ public class E2EExactlyOnceSinkFunction extends
 
 	/**
 	 * Call on notifyCheckpointComplete()
-	 * Flink框架真正做完CP的时候来调用这个,把数据真正写入到外部存储系统中
+	 * Flink框架真正做完CP的时候来调用这个,把数据从临时存储中真正写入到外部存储系统中
 	 * @param table
 	 */
 	@Override
