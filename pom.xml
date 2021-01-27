@@ -12,6 +12,7 @@
     <modules>
         <module>flink-learning-code</module>
         <module>khkw</module>
+        <module>java-learning</module>
     </modules>
 
     <properties>

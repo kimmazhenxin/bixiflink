@@ -5,14 +5,16 @@
 
 
 ## Flink项目,主要是Flink框架和相关组件的各种操作应用
-## 模块：flink-common-jar
-主要是Flink项目用到的公共jar包
+## 模块：khkw
+主要是Flink项目知其然知其所以然课程代码
 
 
 ## 模块：flink-learning-code 
 主要是学习Flink的相关代码
 
 
+
+## 
 
 ## 项目运行
 
