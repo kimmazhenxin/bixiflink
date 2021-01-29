@@ -91,7 +91,7 @@ public class ConnectedJoinTimeServiceSessionWindowUpgrade {
                         outString = getRuntimeContext().getReducingState(outStringDesc);
                     }
 
-                                    @Override
+                    @Override
                     public void processElement1(Tuple2<String, Integer> value, Context ctx,
                                                 Collector<String> out) throws Exception {
                         outString.add(value.f0);
@@ -104,6 +104,7 @@ public class ConnectedJoinTimeServiceSessionWindowUpgrade {
                         logger.info("processElement1 Function currentKey= " + ctx.getCurrentKey() +
                                 "\tdataTime= " + dataTime.value());
                     }
+
                     @Override
                     public void processElement2(Tuple2<String, Integer> value, Context ctx,
                                                 Collector<String> out) throws Exception {
@@ -117,6 +118,7 @@ public class ConnectedJoinTimeServiceSessionWindowUpgrade {
                         logger.info("processElement2 Function currentKey= " + ctx.getCurrentKey() +
                                 "\tdataTime= " + dataTime.value());
                     }
+
                     @Override
                     public void onTimer(long timestamp, OnTimerContext ctx, Collector<String> out) throws Exception {
                         // timestamp：调用定时器时的时间
