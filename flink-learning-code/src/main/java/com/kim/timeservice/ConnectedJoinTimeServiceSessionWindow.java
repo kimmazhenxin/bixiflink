@@ -1,4 +1,4 @@
-package com.kim.window.timeservice;
+package com.kim.timeservice;
 
 import org.apache.flink.api.common.typeinfo.Types;
 import org.apache.flink.api.java.tuple.Tuple2;
