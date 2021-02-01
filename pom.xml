@@ -12,7 +12,7 @@
     <modules>
         <module>flink-learning-code</module>
         <module>khkw</module>
-        <module>java-learning</module>
+        <module>java-learning-code</module>
     </modules>
 
     <properties>
@@ -38,6 +38,7 @@
         <slf4j.version>1.7.7</slf4j.version>
         <flink.mysql.cdc.version>1.1.0</flink.mysql.cdc.version>
         <lombok.version>1.18.0</lombok.version>
+        <junit.version>4.11</junit.version>
         <project.build.scope>compile</project.build.scope>
     </properties>
 
