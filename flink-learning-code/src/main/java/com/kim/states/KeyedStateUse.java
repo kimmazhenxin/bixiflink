@@ -35,7 +35,7 @@ public class KeyedStateUse {
 
     private static Logger logger = LoggerFactory.getLogger(KeyedStateUse.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         String hostname = "10.113.31.198";
@@ -69,39 +69,49 @@ public class KeyedStateUse {
 
             @Override
             public void processElement(Tuple2<String, Integer> value, Context ctx, Collector<String> out) throws Exception {
+                boolean changed = initState(ctx, out);
+                logger.info("initState is " + changed);
+                if (mapState.contains(value.f0)) {
+                    logger.info("MapState contain currentKey......");
+                }
 
+                if (wordState.value() != null || wordState.value().f0 != null || wordState.value().f2 != null) {
+                    logger.info("ValueState f0 is  " + wordState.value().f0);
+                }
 
-
-
+                out.collect(value.f0);
             }
 
-
-            public void initState(Context ctx, Collector<String> out) {
+            public boolean initState(Context ctx, Collector<String> out) {
+                boolean flag = false;
                 try {
                     if (mapState.isEmpty()) {
-                        logger.info("Note: MapState current key is " + ctx.getCurrentKey());
-                        String[] strings = ctx.getCurrentKey().split(".");
-                        mapState.put(strings[0], 1);
-                        mapState.put(strings[2], 1);
-                        logger.info("Note: MapState current key is " + ctx.getCurrentKey() + "MapState is  " + mapState.toString());
+                        logger.info("Note: MapState init, current key is " + ctx.getCurrentKey());
+//                        String[] strings = ctx.getCurrentKey().split(".");
+//                        mapState.put(strings[0], 1);
+//                        mapState.put(strings[2], 1);
+                        mapState.put(ctx.getCurrentKey(), 1);
+                        logger.info("Note: MapState is  " + mapState.toString());
+                        flag = true;
                     }
 
                     if (wordState.value() == null) {
-                        logger.info("Note: ValueState current key is " + ctx.getCurrentKey());
+                        logger.info("Note: ValueState init, current key is " + ctx.getCurrentKey());
                         wordState.update(Tuple3.of(ctx.getCurrentKey(), 1, new HashSet<Long>()));
+                        flag = true;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-
+                return flag;
             }
-
-
-
         });
 
 
+
+        process.print();
+
+        env.execute("KeyedStateUse");
     }
 
 
