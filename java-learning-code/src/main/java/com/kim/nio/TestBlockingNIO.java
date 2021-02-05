@@ -128,5 +128,7 @@ public class TestBlockingNIO {
 
     public static void main(String[] args) throws Exception {
 
+        TestBlockingNIO blockingNIO = new TestBlockingNIO();
+        blockingNIO.server(6669);
     }
 }
