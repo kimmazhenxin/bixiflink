@@ -9,6 +9,7 @@ import java.nio.channels.SocketChannel;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
+//阻塞式Socket,临时解决办法是使用  socketChannel.shutdownOutput();
 public class TsetBlockingNIO2 {
 
     //客户端
@@ -31,6 +32,8 @@ public class TsetBlockingNIO2 {
                 buffer.clear();
             }
 
+            //临时解决办法: 关闭发送,告诉服务器已经发送完毕,否则无法接收到服务端的反馈,服务器端也会卡死,因为服务器不知道客户端有没有发送完数据
+            socketChannel.shutdownOutput();
 
             //接收服务端的反馈
             int len = 0;
@@ -82,7 +85,8 @@ public class TsetBlockingNIO2 {
         //发送反馈给客户端
         buffer.put("服务端接收数据成功".getBytes());
         buffer.flip();
-        accept.write(buffer);
+        int numBytes = accept.write(buffer);
+        System.out.println("发送的字节数: " + numBytes);
     }
 
 
