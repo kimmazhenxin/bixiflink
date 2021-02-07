@@ -9,8 +9,8 @@ import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Scanner;
 
 /**
  * 一、使用 NIO完成网络通信的三个核心：
@@ -56,10 +56,18 @@ public class TestNonBlockingNIO {
             ByteBuffer buffer = ByteBuffer.allocate(1024);
 
             //4. 发送数据给服务端
-            buffer.put(new Date().toString().getBytes());
-            buffer.flip();
-            socketChannel.write(buffer);
-            buffer.clear();
+//            buffer.put(new Date().toString().getBytes());
+//            buffer.flip();
+//            socketChannel.write(buffer);
+//            buffer.clear();
+            Scanner scanner = new Scanner(System.in);
+            while (scanner.hasNext()) {
+                String str = scanner.next();
+                buffer.put((new Date().toString() + "\n" + str).getBytes());
+                buffer.flip();
+                socketChannel.write(buffer);
+                buffer.clear();
+            }
 
 
         } catch (Exception e) {
@@ -136,20 +144,17 @@ public class TestNonBlockingNIO {
                         buffer.clear();
                     }
                 }
+
+                //15. 取消选择键 SelectionKey
+                iterator.remove();
             }
-
         }
-
-
     }
 
 
-    public static void main(String[] args) {
-        HashSet<Long> set = new HashSet<>();
-        set.add(1L);
-        set.add(2L);
-        logger.info("set:{}", set);
-        System.out.println(set);
+    public static void main(String[] args) throws IOException {
+        TestNonBlockingNIO nonBlockingNIO = new TestNonBlockingNIO();
+        nonBlockingNIO.server(6669);
     }
 
 
