@@ -1,11 +1,15 @@
 package com.kim.nio;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 
 /**
@@ -32,6 +36,10 @@ import java.util.Iterator;
 
 
 public class TestNonBlockingNIO {
+
+    private static final Logger logger = LoggerFactory.getLogger(TestNonBlockingNIO.class);
+
+
 
     //客户端
     public void client(String ip, int port) {
@@ -137,7 +145,11 @@ public class TestNonBlockingNIO {
 
 
     public static void main(String[] args) {
-
+        HashSet<Long> set = new HashSet<>();
+        set.add(1L);
+        set.add(2L);
+        logger.info("set:{}", set);
+        System.out.println(set);
     }
 
 
