@@ -49,6 +49,7 @@ public class CallBackTest {
 
         //第二部分: 使用回调函数getControl
         int control = getControl.getControl(sum);
+
         return control;
     }
 
@@ -75,7 +76,7 @@ public class CallBackTest {
         //makeInformation();
 
         // 第二种: 使用回调函数
-        GetControlFunction getControl = (int num) -> {
+        GetControlFunction getControlFunction = (int num) -> {
             int a;
             if (num % 2 == 0) {
                 a = num;
@@ -88,6 +89,8 @@ public class CallBackTest {
         };
 
 
-        makeInformationUseCallBack(getControl);
+
+
+        makeInformationUseCallBack(getControlFunction);
     }
 }

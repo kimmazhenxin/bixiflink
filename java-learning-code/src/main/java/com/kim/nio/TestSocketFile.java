@@ -1,10 +1,5 @@
 package com.kim.nio;
 
-import com.kim.nio.TsetBlockingNIO2;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.file.Paths;
@@ -50,8 +45,8 @@ public class TestSocketFile {
 //        TsetBlockingNIO2 blockingNIO2 = new TsetBlockingNIO2();
 //        blockingNIO2.client("127.0.0.1", 6669);
 
-//        TestNonBlockingNIO nonBlockingNIO = new TestNonBlockingNIO();
-//        nonBlockingNIO.client("127.0.0.1", 6669);
-        testChannel();
+        TestNonBlockingNIO nonBlockingNIO = new TestNonBlockingNIO();
+        nonBlockingNIO.client("127.0.0.1", 6669);
+        //testChannel();
     }
 }

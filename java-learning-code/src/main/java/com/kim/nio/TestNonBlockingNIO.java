@@ -68,8 +68,6 @@ public class TestNonBlockingNIO {
                 socketChannel.write(buffer);
                 buffer.clear();
             }
-
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -143,6 +141,11 @@ public class TestNonBlockingNIO {
                         System.out.println(new String(buffer.array(), 0, len));
                         buffer.clear();
                     }
+                    //接收完后发送到客户端
+                    buffer.put("服务端接收数据成功".getBytes());
+                    buffer.flip();
+                    int num = channel.write(buffer);
+                    System.out.println("服务端发送的字节数: " + num);
                 }
 
                 //15. 取消选择键 SelectionKey
