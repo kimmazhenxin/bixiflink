@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Interrupt的使用
- *  1. 打算阻塞状态的线程（sleep、wait、join），此时的打断标记是 false.
+ *  1. 打断阻塞状态的线程（sleep、wait、join），此时的打断标记是 false.
  *  2. 打断正常运行的线程，此时的打算标记是 true, 此时并不意味着立刻结束线程，只是告诉它我要打断它，后续还得通过打断标记来判断处理.
  * @Author: kim
  * @Date: 2021/2/20 08:20
