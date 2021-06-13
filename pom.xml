@@ -280,6 +280,12 @@
             <version>${fastjson.version}</version>
             <scope>${project.build.scope}</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.5</version>
+        </dependency>
     </dependencies>
 
 
