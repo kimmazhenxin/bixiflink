@@ -11,10 +11,13 @@ import lombok.Data;
 
 public class TestLombok {
     public static void main(String[] args) {
-        Teacher teacher = new Teacher();
-        teacher.setDesc("优秀");
-        teacher.setId("001");
-        System.out.println(teacher);
+        long l = System.currentTimeMillis();
+        long l1 = System.currentTimeMillis() - 500L;
+        System.out.println("l:" + l + ", l1:"+l1);
+//        Teacher teacher = new Teacher();
+//        teacher.setDesc("优秀");
+//        teacher.setId("001");
+//        System.out.println(teacher);
     }
 }
 
