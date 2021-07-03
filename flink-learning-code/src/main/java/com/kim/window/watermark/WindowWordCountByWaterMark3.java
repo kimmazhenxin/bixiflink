@@ -76,6 +76,8 @@ public class WindowWordCountByWaterMark3 {
                 WatermarkStrategy
                         // 指定Watermark
                         .<Tuple2<String, Long>>forBoundedOutOfOrderness(Duration.ofSeconds(3))
+                        // 指定空闲时间
+                        //.withIdleness(Duration.ofSeconds(3))
                         // 提取EventTime
                         .withTimestampAssigner(((element, recordTimestamp) -> element.f1)))
                 .map(new MapFunction<Tuple2<String, Long>, Tuple2<String, Long>>() {
