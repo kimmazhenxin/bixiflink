@@ -13,6 +13,7 @@
         <module>flink-learning-code</module>
         <module>khkw</module>
         <module>java-learning-code</module>
+        <module>UserBehaviorAnalysis</module>
     </modules>
 
     <properties>
