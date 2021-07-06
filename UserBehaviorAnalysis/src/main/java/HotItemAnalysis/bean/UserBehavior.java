@@ -1,4 +1,4 @@
-package HotItemAnalysis.hotitems;
+package HotItemAnalysis.bean;
 
 /**
  * 用户行为数据结构

@@ -1,35 +1,38 @@
-package HotItemAnalysis.hotitems;
+package NetworkFlowAnalysis.bean;
 
 /**
- * 商品点击量(窗口操作的输出类型)
- * @Author: mazhenxin
- * @File: ItemViewCount.java
- * @Date: 2021/07/03 16:04
+ * @Author: kim
+ * @Description: 页面点击统计
+ * @Date: 15:51 2021/7/6
+ * @Version: 1.0
  */
-public class ItemViewCount {
+public class PageViewCount {
 
-    // 商品ID
-    private long itemId;
+    // 页面url
+    private String url;
 
     // 窗口结束时间戳
     private long windowEnd;
 
-    // 商品在该窗口的点击量
+    // 页面在该窗口的点击量
     private long viewCount;
 
 
-    public ItemViewCount(long itemId, long windowEnd, long viewCount) {
-        this.itemId = itemId;
+    public PageViewCount() {
+    }
+
+    public PageViewCount(String url, long windowEnd, long viewCount) {
+        this.url = url;
         this.windowEnd = windowEnd;
         this.viewCount = viewCount;
     }
 
-    public long getItemId() {
-        return itemId;
+    public String getUrl() {
+        return url;
     }
 
-    public void setItemId(long itemId) {
-        this.itemId = itemId;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public long getWindowEnd() {
@@ -50,8 +53,8 @@ public class ItemViewCount {
 
     @Override
     public String toString() {
-        return "ItemViewCount{" +
-                "itemId=" + itemId +
+        return "PageViewCount{" +
+                "url='" + url + '\'' +
                 ", windowEnd=" + windowEnd +
                 ", viewCount=" + viewCount +
                 '}';

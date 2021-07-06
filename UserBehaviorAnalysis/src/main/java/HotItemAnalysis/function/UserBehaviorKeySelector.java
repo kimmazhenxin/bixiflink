@@ -1,7 +1,7 @@
-package HotItemAnalysis.hotitems_analysis;
+package HotItemAnalysis.function;
 
 
-import HotItemAnalysis.hotitems.UserBehavior;
+import HotItemAnalysis.bean.UserBehavior;
 import org.apache.flink.api.java.functions.KeySelector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

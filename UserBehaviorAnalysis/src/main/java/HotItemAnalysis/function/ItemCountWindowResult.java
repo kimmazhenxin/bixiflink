@@ -1,6 +1,6 @@
-package HotItemAnalysis.hotitems_analysis;
+package HotItemAnalysis.function;
 
-import HotItemAnalysis.hotitems.ItemViewCount;
+import HotItemAnalysis.bean.ItemViewCount;
 import org.apache.flink.streaming.api.functions.windowing.ProcessWindowFunction;
 import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
 import org.apache.flink.util.Collector;
@@ -8,12 +8,16 @@ import org.apache.flink.util.Collector;
 /**
  * 用于窗口输出的结果
  * @Author: mazhenxin
- * @File: WindowResultFunction.java
+ * @File: ItemCountWindowResult.java
  * @Date: 2021/07/03 16:04
  */
-public class WindowResultFunction extends ProcessWindowFunction<Long, ItemViewCount, Long, TimeWindow> {
+public class ItemCountWindowResult extends ProcessWindowFunction<Long, ItemViewCount, Long, TimeWindow> {
+    // IN, 这里是聚合后输入的类型
+    // OUT, 输出类型
+    // KEY, Key类型
+    // W extends Window, 窗口的类型
 
-    public WindowResultFunction() {
+    public ItemCountWindowResult() {
     }
 
     /**
