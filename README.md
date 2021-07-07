@@ -9,14 +9,14 @@
 
 
 ## 模块：flink-learning-code 
-主要是学习Flink的相关代码
-
-
-
+主要是学习Flink的相关代码  
+  
+  
+  
 ## java-learing  
 主要是学习Java相关代码
 
 
 ## UserBehaviorAnalysis  
-主要是用户行为分析相关代码
+主要是使用Flink进行用户行为分析相关代码
 
