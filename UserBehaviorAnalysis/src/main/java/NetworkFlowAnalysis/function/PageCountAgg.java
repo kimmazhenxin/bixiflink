@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * 实现累加器功能
  * @Author: kim
  * @Description:
  * @Date: 17:39 2021/7/6
@@ -16,27 +17,26 @@ public class PageCountAgg implements AggregateFunction<ApacheLogEvent, Long, Lon
     private static final Logger logger = LoggerFactory.getLogger(PageCountAgg.class);
 
 
-
     public PageCountAgg() {
     }
 
     @Override
     public Long createAccumulator() {
-        return null;
+        return 0L;
     }
 
     @Override
     public Long add(ApacheLogEvent value, Long accumulator) {
-        return null;
+        return accumulator + 1L;
     }
 
     @Override
     public Long getResult(Long accumulator) {
-        return null;
+        return accumulator;
     }
 
     @Override
     public Long merge(Long a, Long b) {
-        return null;
+        return a + b;
     }
 }

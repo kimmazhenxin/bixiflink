@@ -38,7 +38,8 @@ public class TopNHotItems extends KeyedProcessFunction<Long, ItemViewCount, Stri
     @Override
     public void open(Configuration parameters) throws Exception {
         super.open(parameters);
-        itemListState = getRuntimeContext().getListState(new ListStateDescriptor<ItemViewCount>("itemState-state", TypeInformation.of(new TypeHint<ItemViewCount>() {})));
+        itemListState = getRuntimeContext().getListState(
+                new ListStateDescriptor<ItemViewCount>("itemStateDesc", TypeInformation.of(new TypeHint<ItemViewCount>() {})));
     }
 
     @Override
@@ -46,7 +47,7 @@ public class TopNHotItems extends KeyedProcessFunction<Long, ItemViewCount, Stri
         // 1.每来一条数据存入ListState状态中
         itemListState.add(value);
         // 2. 注册WindowEnd() + 100的EventTime Timer,定时器100ms
-        // 当触发时，说明收齐了属于windowEnd窗口的所有商品数据
+        // 当触发时，说明收齐了属于windowEnd窗口的所有商品数据,触发后续的排序功能
         // 由于对Key来说,窗口的结束时间戳一致,实际这里只是注册了一个(重复注册无效),Flink 框架会自动忽略同一时间的重复注册
         ctx.timerService().registerEventTimeTimer(value.getWindowEnd() + 100L);
     }
@@ -54,8 +55,6 @@ public class TopNHotItems extends KeyedProcessFunction<Long, ItemViewCount, Stri
 
     @Override
     public void onTimer(long timestamp, OnTimerContext ctx, Collector<String> out) throws Exception {
-        super.onTimer(timestamp, ctx, out);
-
         // 定时器触发当前已收集到所有数据,TopN排序输出
         Iterable<ItemViewCount> itemViewCounts = itemListState.get();
         Iterator<ItemViewCount> iterator = itemViewCounts.iterator();
@@ -71,7 +70,7 @@ public class TopNHotItems extends KeyedProcessFunction<Long, ItemViewCount, Stri
             }
         });
 
-        // 提前清除状态,释放内存
+        // 提前清除状态,提前释放内存
         itemListState.clear();
 
         // 输出统计结果
