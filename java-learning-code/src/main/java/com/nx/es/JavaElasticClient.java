@@ -17,7 +17,9 @@ import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.common.xcontent.XContentType;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -51,8 +53,13 @@ public class JavaElasticClient {
 		// 更新
 		updateStudent(index, type, id);
 
-		// 搜索
+		// 无条件搜索
 		search(index);
+
+		// bool标签、filter标签
+		boolSearch(index);
+
+
 
 
 		// 关闭ES连接
@@ -183,7 +190,7 @@ public class JavaElasticClient {
 	}
 
 	/**
-	 * 最基本的搜索功能
+	 * 最基本的搜索功能,即无条件搜素search
 	 * @param index
 	 * @throws IOException
 	 */
@@ -192,10 +199,42 @@ public class JavaElasticClient {
 		SearchResponse response = client.search(request, RequestOptions.DEFAULT);
 		SearchHit[] hits = response.getHits().getHits();
 		for (SearchHit hit: hits) {
-			// 获取hit中的source,即document记录
+			// 获取hit中的source,即document记录,封装成了Json串
+			System.out.println(hit.getSourceAsString());
+			// 以Map的形式封装,可以根据key按需索取
+			Map<String, Object> sourceMap = hit.getSourceAsMap();
+		}
+	}
+
+	/**
+	 * 多条件的搜素 bool标签、filter标签
+	 * @param index
+	 * @throws Exception
+	 */
+	private static void boolSearch(String index) throws Exception {
+		SearchRequest request = new SearchRequest(index);
+		SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+		sourceBuilder.query(QueryBuilders.boolQuery()
+				.must(QueryBuilders.matchQuery("address", "beijing"))
+				.mustNot(QueryBuilders.matchQuery("like", "swimming"))
+				.should(QueryBuilders.matchQuery("age", 18))
+				.should(QueryBuilders.matchQuery("age", 19))
+				.should(QueryBuilders.matchQuery("age", 20))
+				.filter(QueryBuilders.rangeQuery("age").gt(19).lte(20)));
+		// 条件赋给request
+		request.source(sourceBuilder);
+
+		SearchResponse response = client.search(request, RequestOptions.DEFAULT);
+		SearchHit[] hits = response.getHits().getHits();
+		for (SearchHit hit: hits) {
+			// 获取hit中的source,即document记录,封装成了Json串
 			System.out.println(hit.getSourceAsString());
 		}
 	}
+
+
+
+
 
 	/**
 	 * match_all 搜素
