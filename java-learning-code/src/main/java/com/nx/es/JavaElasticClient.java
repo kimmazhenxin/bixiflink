@@ -2,6 +2,9 @@ package com.nx.es;
 
 import org.apache.http.HttpHost;
 import org.elasticsearch.action.ActionListener;
+import org.elasticsearch.action.bulk.BulkItemResponse;
+import org.elasticsearch.action.bulk.BulkRequest;
+import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetRequest;
@@ -10,19 +13,27 @@ import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchRequest;
 import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.client.indices.PutMappingRequest;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.aggregations.AggregationBuilders;
+import org.elasticsearch.search.aggregations.bucket.terms.Terms;
+import org.elasticsearch.search.aggregations.metrics.avg.Avg;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
+import org.elasticsearch.search.sort.SortOrder;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -44,6 +55,8 @@ public class JavaElasticClient {
 		String type = "student";
 		String id = "1";
 
+		// 批量插入
+		bulkLoad(index, type);
 		// 插入
 		indexStudent(index, type, id);
 		// 查询
@@ -86,6 +99,78 @@ public class JavaElasticClient {
 			e.printStackTrace();
 		}
 	}
+
+	/**
+	 * 批量插入操作
+	 * post /index/type/_bulk {"index":{"_id":"1"}} {"name":"Tom"} {"index":{"_id":"2"}} {"name":"Jack"}
+	 * @param index
+	 * @throws Exception
+	 */
+	private static void bulkLoad(String index, String type) throws Exception {
+		BulkRequest request = new BulkRequest();
+		request.add(new IndexRequest(index, type, "1").source("name", "Jack", "age", 38, "salary", 21000, "team", "a"))
+				.add(new IndexRequest("company", "employee", "2")
+						.source("name", "Smith",
+								"age", 36,
+								"salary", 18000,
+								"team", "a"))
+				.add(new IndexRequest("company", "employee", "3")
+						.source("name", "Kon",
+								"age", 29,
+								"salary", 17000,
+								"team", "a"))
+				.add(new IndexRequest("company", "employee", "4")
+						.source("name", "Mark",
+								"age", 42,
+								"salary", 30000,
+								"team", "b"))
+				.add(new IndexRequest("company", "employee", "5")
+						.source("name", "Lin",
+								"age", 37,
+								"salary", 28000,
+								"team", "b"))
+				.add(new IndexRequest("company", "employee", "6")
+						.source("name", "Whon",
+								"age", 29,
+								"salary", 15000,
+								"team", "b"));
+		BulkResponse responses = client.bulk(request, RequestOptions.DEFAULT);
+		BulkItemResponse[] items = responses.getItems();
+		for (BulkItemResponse response : items) {
+			System.out.println(response.isFailed());
+			System.out.println(response.getResponse());
+		}
+	}
+
+
+	/**
+	 * 修改分组字段	fielddata = true ,按照 team分组
+	 * {
+	 * 	"properties": {
+	 * 		"team":{
+	 * 			"type": "text",
+	 * 			"fielddata": true
+	 *                }* 	}
+	 * }
+	 * @param index
+	 */
+	private static void putMapping(String index) throws IOException {
+		PutMappingRequest request = new PutMappingRequest(index);
+		request.source(XContentFactory.jsonBuilder()
+				.startObject()
+					.startObject("properties")
+						.startObject("team")
+							.field("type", "text")
+							.field("fileddata", true)
+						.endObject()
+					.endObject()
+				.endObject());
+
+		AcknowledgedResponse response = client.indices().putMapping(request, RequestOptions.DEFAULT);
+		System.out.println(response.isAcknowledged());
+	}
+
+
 
 	/**
 	 * 单条插入记录
@@ -190,6 +275,51 @@ public class JavaElasticClient {
 	}
 
 	/**
+	 * match_all 搜素
+	 * @param index
+	 * @throws IOException
+	 */
+	private static void matchAll(String index) throws IOException {
+		SearchRequest request = new SearchRequest(index);
+		request.source(new SearchSourceBuilder().query(QueryBuilders.matchAllQuery()));
+		SearchResponse response = client.search(request, RequestOptions.DEFAULT);
+		SearchHit[] hits = response.getHits().getHits();
+		for (SearchHit hit : hits) {
+			System.out.println(hit.getSourceAsString());
+		}
+	}
+
+	/**
+	 * match 条件搜索
+	 * @param index
+	 * @throws Exception
+	 */
+	private static void match(String index) throws Exception {
+		SearchRequest request = new SearchRequest(index);
+		request.source(new SearchSourceBuilder().query(QueryBuilders.matchQuery("name", "Smith")));
+		SearchResponse response = client.search(request, RequestOptions.DEFAULT);
+		SearchHit[] hits = response.getHits().getHits();
+		for (SearchHit hit : hits) {
+			System.out.println(hit.getSourceAsString());
+		}
+	}
+
+
+	/**
+	 * match_phrase
+	 */
+	private static void matchPhrase(String index) throws IOException {
+		SearchRequest request = new SearchRequest(index);
+		request.source(new SearchSourceBuilder().query(QueryBuilders.matchPhraseQuery("like", "hiking basketball")));
+		SearchResponse response = client.search(request, RequestOptions.DEFAULT);
+		SearchHit[] hits = response.getHits().getHits();
+		for (SearchHit hit : hits) {
+			System.out.println(hit.getSourceAsString());
+		}
+	}
+
+
+	/**
 	 * 最基本的搜索功能,即无条件搜素search
 	 * @param index
 	 * @throws IOException
@@ -233,15 +363,73 @@ public class JavaElasticClient {
 	}
 
 
+	/**
+	 * sort、form、size、_source、highlight
+	 * @throws Exception
+	 */
+	private static void searchSortFromSizeSourceHighLight(String index) throws Exception {
+		SearchRequest request = new SearchRequest(index);
+		SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+		sourceBuilder.query(QueryBuilders.matchQuery("like", "running"))
+				.sort("age", SortOrder.DESC)
+				.from(0)
+				.size(2)
+				.fetchSource(new String[]{"age", "name", "address"}, new String[0])
+				.highlighter(new HighlightBuilder().field("like"));
+		request.source(sourceBuilder);
+		SearchResponse response = client.search(request, RequestOptions.DEFAULT);
+		SearchHit[] hits = response.getHits().getHits();
+		for (SearchHit hit : hits) {
+			System.out.println(hit.getSourceAsString());
+			System.out.println(hit.getHighlightFields().get("like").toString());
+		}
+	}
 
+	/**
+	 * 聚合、分组、分析avg
+	 * @param index
+	 * @throws Exception
+	 */
+	private static void avgAggs(String index) throws Exception {
+		SearchRequest request = new SearchRequest(index);
+		SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+		sourceBuilder.query(QueryBuilders.rangeQuery("age").gte(35))
+				.size(0)
+				.aggregation(
+						AggregationBuilders
+								.terms("group_by_team")	// 分组后的名字
+								.field("team")	//分组字段
+								.subAggregation(AggregationBuilders.avg("avg_salary").field("salary"))	// 按照salary求平均值
+				);
+		request.source(sourceBuilder);
+		SearchResponse response = client.search(request, RequestOptions.DEFAULT);
+		Terms group_by_team = response.getAggregations().get("group_by_team");
+		List<? extends Terms.Bucket> buckets = group_by_team.getBuckets();
+		for (Terms.Bucket bucket : buckets) {
+			Avg avg_salary = bucket.getAggregations().get("avg_salary");
+			System.out.println("组名：" + bucket.getKey() + " , 个数：" + bucket.getDocCount()
+					+ " , 平均值 ： " + avg_salary.getValue());
+		}
+	}
 
 
 	/**
-	 * match_all 搜素
+	 * 分组聚合,按照 age字段聚合,聚合后的组名 group_by_age
 	 * @param index
-	 * @throws IOException
+	 * @throws Exception
 	 */
-	public static void matchAll(String index) throws IOException {
-
+	private static void groupBy(String index) throws Exception {
+		SearchRequest request = new SearchRequest(index);
+		SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+		sourceBuilder.query(QueryBuilders.matchAllQuery())
+				.size(0)
+				.aggregation(AggregationBuilders.terms("group_by_age").field("age"));
+		request.source(sourceBuilder);
+		SearchResponse response = client.search(request, RequestOptions.DEFAULT);
+		Terms term = response.getAggregations().get("group_by_age");
+		List<? extends Terms.Bucket> buckets = term.getBuckets();
+		for (Terms.Bucket bucket : buckets) {
+			System.out.println("组名: " + bucket.getKey() + "	, 个数: " + bucket.getDocCount());
+		}
 	}
 }
