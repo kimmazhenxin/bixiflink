@@ -10,7 +10,6 @@ import org.apache.flink.api.common.state.ValueStateDescriptor;
 import org.apache.flink.api.common.time.Time;
 import org.apache.flink.api.common.typeinfo.BasicTypeInfo;
 import org.apache.flink.api.common.typeinfo.Types;
-import org.apache.flink.api.java.tuple.Tuple2;
 import org.apache.flink.api.java.tuple.Tuple3;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.runtime.state.StateBackend;
@@ -113,7 +112,7 @@ public class ConnectedJoinTimeServiceSessionWindowUpgradeEventTimeMerge {
                         outString.add(value.f0);
                         long currentTimeMillis = value.f2;
                         // 注册3S定时器
-                        ctx.timerService().registerProcessingTimeTimer(currentTimeMillis + interval);
+                        ctx.timerService().registerEventTimeTimer(currentTimeMillis + interval);
                         dataTime.update(currentTimeMillis);
                         logger.info("subtaskId: " + getRuntimeContext().getIndexOfThisSubtask() +
                                 "\tvalue: " + value.f0);
@@ -126,7 +125,7 @@ public class ConnectedJoinTimeServiceSessionWindowUpgradeEventTimeMerge {
                         outString.add(value.f0);
                         long currentTimeMillis = value.f2;
                         // 注册3S定时器
-                        ctx.timerService().registerProcessingTimeTimer(currentTimeMillis + interval);
+                        ctx.timerService().registerEventTimeTimer(currentTimeMillis + interval);
                         dataTime.update(currentTimeMillis);
                         logger.info("subtaskId: " + getRuntimeContext().getIndexOfThisSubtask() +
                                 "\tvalue: " + value.f0);
